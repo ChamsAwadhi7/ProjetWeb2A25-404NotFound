@@ -15,6 +15,7 @@ NextStep est le choix idéal pour executer les plans de entrepeneurs and hommes 
  ```bash
  git clone https://github.com/ChamsAwadhi7/ProjetWeb2A25-404NotFound.git
  cd ProjetWeb2A25
+ ```
 2.Si vous utilisez WAMP oiu XAMPP :
 *Placez le projet dans le dossier www (WAMP) ou htdocs (XAMPP).
 
