@@ -1,0 +1,181 @@
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      margin-bottom: 20px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    form label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    form button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #45a049;
+    }
+
+    input[type="file"] {
+      border: none;
+      margin-top: 5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    table th, table td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    table th {
+      background-color: #f2f2f2;
+    }
+
+    .actions button {
+      background-color: #008CBA;
+      color: white;
+      padding: 6px 12px;
+      margin: 3px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .actions button:hover {
+      background-color: #007bb5;
+    }
+
+    .details-section {
+      margin-top: 20px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .resource-item {
+      margin-bottom: 10px;
+    }
+
+    .resource-item span {
+      font-weight: bold;
+    }
+
+    .resource-item a {
+      color: #4CAF50;
+    }
+
+    .resource-item a:hover {
+      text-decoration: underline;
+    }
+
+    .preview-img {
+      width: 100px;
+      height: auto;
+    }
+
+    input[type="text"], input[type="url"] {
+      width: calc(100% - 20px);
+    }
+
+    input[type="text"], input[type="url"], button {
+      margin-top: 10px;
+    }
+
+    /* Style pour les boutons */
+    .btn-actions {
+      display: flex;
+      justify-content: space-around; /* Espace égal entre les boutons */
+      align-items: center; /* Centrer les boutons verticalement */
+    }
+
+    .btn-actions .btn {
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      transition: background-color 0.3s;
+    }
+
+    .btn-actions .btn:hover {
+      background-color: #f0f0f0;
+    }
+
+    .btn-delete {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .btn-edit {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .btn-ressource {
+      background-color: #2ecc71;
+      color: white;
+    }
+
+    .btn {
+      padding: 8px 15px; /* Espacement autour du texte */
+      margin: 5px; /* Espacement entre les boutons */
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+.btn i {
+  margin-right: 5px; /* Espace entre l'icône et le texte */
+}
+
