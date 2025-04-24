@@ -1,8 +1,9 @@
 <?php
-require_once(__DIR__ . '/../Model/Formation.php');
+require_once(__DIR__ . '/../../BackOffice/Model/Formation.php');
+
+
 $formationModel = new Formation();
 $formations = $formationModel->getAllFormations();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -222,7 +223,10 @@ $formations = $formationModel->getAllFormations();
             <button class="see-more"
                     data-title="<?= htmlspecialchars($formation['class_form']) ?>" 
                     data-desc="<?= htmlspecialchars($formation['desc_form']) ?>"
+                    data-price="<?= htmlspecialchars($formation['price_form']) ?>"
                     data-image="image/Business-growth.jpg">
+                    
+
                 See more...
             </button>
         </div>
@@ -235,6 +239,7 @@ $formations = $formationModel->getAllFormations();
         <h3 class="popup-title"></h3>
         <p class="popup-text"></p>
         <button class="btn-contact">Subscribe for 2.99TND</button>
+
     </div>
 </div>
 <style>

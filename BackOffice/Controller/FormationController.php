@@ -13,16 +13,16 @@ class FormationController {
         return $this->formationModel->getAllFormations();
     }
 
-    public function addFormation($formationId, $class, $date,$desc) {
-        $this->formationModel->addFormation($formationId, $class, $date,$desc);
+    public function addFormation($formationId, $class, $date,$desc,$price,$url,$duration,$capacity) {
+        $this->formationModel->addFormation($formationId, $class, $date,$desc,$price,$url,$duration,$capacity);
     }
 
     public function getFormationById($id) {
         return $this->formationModel->getFormationById($id);
     }
 
-    public function updateFormation($id, $formationId, $class, $date,$desc) {
-        $this->formationModel->updateFormation($id, $formationId, $class, $date,$desc);
+    public function updateFormation($id, $formationId, $class, $date,$desc,$price,$url,$duration,$capacity) {
+        $this->formationModel->updateFormation($id, $formationId, $class, $date,$desc,$price,$url,$duration,$capacity);
     }
 
     public function deleteFormation($id) {

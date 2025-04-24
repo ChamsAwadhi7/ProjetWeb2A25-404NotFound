@@ -165,107 +165,80 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener("scroll", checkStats);
 });
-document.addEventListener('DOMContentLoaded', function() {
-  // Get all "See more" buttons and the popup elements
-  const seeMoreButtons = document.querySelectorAll('.see-more');
-  const popup = document.getElementById('successPopup');
-  const popupImage = document.querySelector('.popup-image');
-  const popupTitle = document.querySelector('.popup-title');
-  const popupText = document.querySelector('.popup-text');
-  const closePopup = document.querySelector('.close-popup');
+document.addEventListener("DOMContentLoaded", function () {
+  const seeMoreButtons = document.querySelectorAll(".see-more");
+  const popup = document.getElementById("successPopup");
+  const popupImage = popup.querySelector(".popup-image");
+  const popupTitle = popup.querySelector(".popup-title");
+  const popupText = popup.querySelector(".popup-text");
+  const subscribeButton = popup.querySelector(".btn-contact");
+  const closePopup = popup.querySelector(".close-popup");
 
-  // Add click event to each "See more" button
+  let selectedFormationId = null;
+
   seeMoreButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      // Get data from the button's data attributes
-      const title = this.getAttribute('data-title');
-      const desc = this.getAttribute('data-desc');
-      const imageSrc = this.getAttribute('data-image');
+    button.addEventListener("click", () => {
+      const title = button.getAttribute("data-title");
+      const desc = button.getAttribute("data-desc");
+      const price = button.getAttribute("data-price");
+      const image = button.getAttribute("data-image");
+      selectedFormationId = button.getAttribute("data-"); // Get the ID for subscription
 
-      // Set the popup content
-      popupImage.src = imageSrc;
-      popupImage.alt = title;
       popupTitle.textContent = title;
       popupText.textContent = desc;
+      popupImage.src = image;
+      subscribeButton.textContent = `Subscribe for ${price} TND`;
 
-      // Show the popup
-      popup.style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // Prevent scrolling
+      popup.style.display = "block";
     });
   });
 
   // Close popup when clicking X
-  closePopup.addEventListener('click', function() {
-    popup.style.display = 'none';
-    document.body.style.overflow = 'auto';
+  closePopup.addEventListener("click", () => {
+    popup.style.display = "none";
+    document.body.style.overflow = "auto";
   });
 
   // Close popup when clicking outside content
-  popup.addEventListener('click', function(e) {
+  popup.addEventListener("click", function (e) {
     if (e.target === popup) {
-      popup.style.display = 'none';
-      document.body.style.overflow = 'auto';
+      popup.style.display = "none";
+      document.body.style.overflow = "auto";
     }
   });
 
   // Close popup with Escape key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && popup.style.display === 'flex') {
-      popup.style.display = 'none';
-      document.body.style.overflow = 'auto';
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && popup.style.display === "block") {
+      popup.style.display = "none";
+      document.body.style.overflow = "auto";
     }
   });
-});
 
-// Check login status when the page loads
-/*function checkLogin() {
-  let isLoggedIn = localStorage.getItem("loggedIn");
-
-  if (isLoggedIn === "true") {
-    enableApplyButtons();
-    document.getElementById("loginBtn").style.display = "none";
-    document.getElementById("logoutBtn").style.display = "inline";
-  } else {
-    disableApplyButtons();
-    document.getElementById("loginBtn").style.display = "inline";
-    document.getElementById("logoutBtn").style.display = "none";
-  }
-}
-
-// Disable the "Apply" buttons if not logged in
-function disableApplyButtons() {
-  const applyButtons = document.querySelectorAll(".applyBtn");
-  applyButtons.forEach((button) => {
-    button.disabled = true;
+  // Subscribe logic
+  subscribeButton.addEventListener("click", () => {
+    popup.style.display = "none";
+    document.getElementById("confirmSubscriptionPopup").style.display = "block";
   });
-}
 
-// Enable the "Apply" buttons if logged in
-function enableApplyButtons() {
-  const applyButtons = document.querySelectorAll(".applyBtn");
-  applyButtons.forEach((button) => {
-    button.disabled = false;
+  document.getElementById("confirmYes").addEventListener("click", () => {
+    document.getElementById("confirmSubscriptionPopup").style.display = "none";
 
-    // Show a message when a logged-in user applies for a job
-    button.addEventListener("click", function () {
-      alert("You have applied for this job!");
-    });
+    fetch("subscribe_handler.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ formation_id: selectedFormationId })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data.message);
+      });
   });
-}
 
-// Handle login
-document.getElementById("loginBtn").addEventListener("click", function () {
-  localStorage.setItem("loggedIn", "true");
-  alert("You are now logged in!");
-  checkLogin();
+  document.getElementById("confirmNo").addEventListener("click", () => {
+    document.getElementById("confirmSubscriptionPopup").style.display = "none";
+  });
 });
 
-// Handle logout
-document.getElementById("logoutBtn").addEventListener("click", function () {
-  localStorage.removeItem("loggedIn");
-  alert("You have logged out!");
-  checkLogin();
-});
 
-// Run check on page load
-checkLogin();*/
+
