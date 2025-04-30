@@ -239,7 +239,9 @@ $formations = $formationModel->getAllFormations();
         <h3 class="popup-title"></h3>
         <p class="popup-text"></p>
         <button class="btn-contact">Subscribe for 2.99TND</button>
-
+        <div class="subscribed-date">
+        <p id="subscriptionDate"></p>
+</div>
     </div>
 </div>
 <style>
@@ -303,16 +305,94 @@ $formations = $formationModel->getAllFormations();
   color: #666;
   line-height: 1.6;
 }
+.participation-date {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: bold;
+}
 </style>
       </section>
     <script>
-      document.querySelectorAll('.widget').forEach(widget => {
-        widget.addEventListener('click', function() {
-          // Add your click functionality here
-          console.log('Widget clicked: ' + this.querySelector('h3').textContent);
-          // Example: window.location.href = 'specific-page.html';
+document.querySelectorAll('.see-more').forEach(button => {
+    button.addEventListener('click', function () {
+        const title = this.getAttribute('data-title');
+        const description = this.getAttribute('data-desc');
+        const price = this.getAttribute('data-price');
+        const imageSrc = this.getAttribute('data-image');
+
+        console.log('See more clicked for widget: ' + title);
+
+        // Populate the popup BEFORE referencing title
+        document.querySelector('.popup-title').textContent = title;
+        document.querySelector('.popup-text').textContent = description;
+        document.querySelector('.popup-image').setAttribute('src', imageSrc);
+
+        const subscriptionDateEl = document.getElementById('subscriptionDate');
+        const subscribeBtn = document.querySelector('.btn-contact');
+
+        console.log('Stored date from localStorage for ' + title + ': ' + localStorage.getItem(`subscriptionDate_${title}`));
+
+        // Load stored date from localStorage
+        const storedDate = localStorage.getItem(`subscriptionDate_${title}`);
+        if (subscriptionDateEl) {
+            if (storedDate) {
+                console.log('Displaying stored date: ' + storedDate);
+                subscriptionDateEl.textContent = `Subscribed on: ${storedDate}`;
+            } else {
+                console.log('No stored date available.');
+                subscriptionDateEl.textContent = '';
+            }
+        }
+
+        // Replace old click listeners
+        const newBtn = subscribeBtn.cloneNode(true);
+        subscribeBtn.parentNode.replaceChild(newBtn, subscribeBtn);
+
+        // Show/hide button based on subscription
+        newBtn.style.display = storedDate ? 'none' : 'inline-block';
+
+        // Add working click listener for this widget
+        newBtn.addEventListener('click', function () {
+            const currentDate = new Date();
+            const formattedDate = currentDate.toLocaleDateString('en-GB');
+
+            console.log('Subscription clicked, saving date: ' + formattedDate);
+            localStorage.setItem(`subscriptionDate_${title}`, formattedDate);
+
+            if (subscriptionDateEl) {
+                subscriptionDateEl.textContent = `Subscribed on: ${formattedDate}`;
+                console.log('Updated subscription date in popup: ' + formattedDate);
+            }
+
+            newBtn.style.display = 'none';
+
+            // AJAX Request to send subscription data to the server
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '../../BackOffice/Controller/ParticipationController.php', true);  // Adjust this to your path
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    console.log('Subscription saved successfully.');
+                    // Handle any server response if necessary
+                } else {
+                    console.error('Failed to save subscription.');
+                }
+            };
+            xhr.send('title=' + encodeURIComponent(title) + '&date=' + encodeURIComponent(formattedDate));
         });
-      });
+
+        // Show popup
+        document.getElementById('successPopup').style.display = 'block';
+    });
+});
+
+// Close popup logic
+document.querySelector('.close-popup').addEventListener('click', function () {
+    document.getElementById('successPopup').style.display = 'none';
+});
+
+
     </script>
           </div>
         </div>

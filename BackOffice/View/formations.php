@@ -1,12 +1,10 @@
 <?php
 require_once(__DIR__ . '/../Model/Formation.php'); // Include the model
 
-//Formation model instantiation
 $formationModel = new Formation();
 
-// Submission Handling
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['edit'])) {
-    $formationId = $_POST['formation_id'];
+    // Collect form data excluding the formation_id
     $class = $_POST['class'];
     $date = $_POST['date'];
     $desc = $_POST['desc_form'];
@@ -15,13 +13,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['edit'])) {
     $duration = $_POST['duration_form'];
     $capacity = $_POST['capacity_form'];   
 
-    $formationModel->addFormation($formationId, $class, $date, $desc,$price,$url,$duration,$capacity);
-
-    header("Location: formations.php");
-    exit();
+    // Validate if required fields are not empty
+    if ( empty($class) || empty($date) || empty($desc) || empty($price) || empty($url) || empty($duration) || empty($capacity)) {
+        echo "<script>alert('Please fill all the required fields.');</script>";
+    } else {
+        // Add the formation if all fields are valid
+        $formationModel->addFormation($class, $date, $desc, $price, $url, $duration, $capacity);
+        header("Location: formations.php");
+        exit();
+    }
 }
 
-// Handle the edit form submission
+// Handle update request if 'edit' is set
 if (isset($_POST['edit'])) {
     $id_form = $_POST['id_form'];
     $class_form = $_POST['class_form'];
@@ -30,25 +33,27 @@ if (isset($_POST['edit'])) {
     $price_form = $_POST['price_form'];
     $url_form = $_POST['url_form'];
     $duration_form = $_POST['duration_form'];
-    $capacity_form = $_POST['capacity_form'];      
+    $capacity_form = $_POST['capacity_form'];
 
-    $formationModel->updateFormation($id_form, $class_form, $date_form, $desc_form,$price_form,$url_form,$duration_form,$capacity_form);  
-
-    header("Location: formations.php");
-    exit();
+    // Validate if required fields are not empty
+    if (empty($id_form) || empty($class_form) || empty($date_form) || empty($desc_form) || empty($price_form) || empty($url_form) || empty($duration_form) || empty($capacity_form)) {
+        echo "<script>alert('Please fill all the required fields.');</script>";
+    } else {
+        // Update formation if all fields are valid
+        $formationModel->updateFormation($id_form, $class_form, $date_form, $desc_form, $price_form, $url_form, $duration_form, $capacity_form);
+        header("Location: formations.php");
+        exit();
+    }
 }
 
 // Handle deletion of a formation
 if (isset($_GET['delete_id'])) {
     $id_form = $_GET['delete_id'];
-
     $formationModel->deleteFormation($id_form);
-
     header("Location: formations.php");
     exit();
 }
 
-// Fetch formations and widgets
 $formations = $formationModel->getAllFormations();
 $widgets = $formationModel->getWidgets();
 ?>
@@ -102,15 +107,14 @@ $widgets = $formationModel->getWidgets();
 
                 <!-- Add New Formation Form -->
                 <h2>Add New Formation</h2>
-                <form action="formations.php" method="POST">
-                    <input type="text" name="formation_id" placeholder="Formation ID" required><br>
-                    <textarea name="class" placeholder="Class" required></textarea><br>
-                    <textarea name="desc_form" placeholder="Description" required></textarea><br>
-                    <input type="date" name="date" required><br>
-                    <input type="text" name="price_form" placeholder="Formation price" required><br>
-                    <input type="text" name="url_form" placeholder="URl-Link" required><br>
-                    <input type="text" name="duration_form" placeholder="Duration" required><br>
-                    <input type="text" name="capacity_form" placeholder="Formation Capacity" required><br>
+                <form id="addFormationForm" action="formations.php" method="POST">
+                    <textarea name="class" placeholder="Class"></textarea><br>
+                    <textarea name="desc_form" placeholder="Description"></textarea><br>
+                    <input type="date" name="date"><br>
+                    <input type="text" name="price_form" placeholder="Formation price"><br>
+                    <input type="text" name="url_form" placeholder="URL-Link"><br>
+                    <input type="text" name="duration_form" placeholder="Duration"><br>
+                    <input type="text" name="capacity_form" placeholder="Formation Capacity"><br>
                     <button type="submit">Add Formation</button>
                 </form>
 
@@ -141,28 +145,26 @@ $widgets = $formationModel->getWidgets();
                 </table>
 
                 <?php
-               
                 if (isset($_GET['edit_id'])):
                     $id_form = $_GET['edit_id'];
                     $formation = $formationModel->getFormationById($id_form);
                 ?>
                     <h2>Edit Formation</h2>
                     <form action="formations.php" method="POST">
-                        <input type="text" name="id_form" value="<?= htmlspecialchars($formation['id_form']) ?>" ><br>
-                        <input type="text" name="class_form" value="<?= htmlspecialchars($formation['class_form']) ?>" ><br>
-                        <textarea name="desc_form" required><?= htmlspecialchars($formation['desc_form']) ?></textarea><br>
-                        <input type="date" name="date_form" placeholder="Date" value="<?= htmlspecialchars($formation['date_form']) ?>" ><br>
-                        <input type="text" name="price_form" placeholder="Price"  value="<?= htmlspecialchars($formation['price_form']) ?>" ><br>
-                        <input type="text" name="url_form" placeholder="URL-Link"  value="<?= htmlspecialchars($formation['url_form']) ?>" ><br>
-                        <input type="text" name="duration_form" placeholder="Duration"  value="<?= htmlspecialchars($formation['duration_form']) ?>" ><br>
-                        <input type="text" name="capacity_form" placeholder="Capacity"  value="<?= htmlspecialchars($formation['capacity_form']) ?>" ><br>
+                        <input type="text" name="id_form" value="<?= htmlspecialchars($formation['id_form']) ?>"><br>
+                        <input type="text" name="class_form" value="<?= htmlspecialchars($formation['class_form']) ?>"><br>
+                        <textarea name="desc_form"><?= htmlspecialchars($formation['desc_form']) ?></textarea><br>
+                        <input type="date" name="date_form" placeholder="Date" value="<?= htmlspecialchars($formation['date_form']) ?>"><br>
+                        <input type="text" name="price_form" placeholder="Price" value="<?= htmlspecialchars($formation['price_form']) ?>"><br>
+                        <input type="text" name="url_form" placeholder="URL-Link" value="<?= htmlspecialchars($formation['url_form']) ?>"><br>
+                        <input type="text" name="duration_form" placeholder="Duration" value="<?= htmlspecialchars($formation['duration_form']) ?>"><br>
+                        <input type="text" name="capacity_form" placeholder="Capacity" value="<?= htmlspecialchars($formation['capacity_form']) ?>"><br>
                         <button type="submit" name="edit">Update Formation</button>
                     </form>
                 <?php endif; ?>
 
                 <hr>
 
-                
                 <h2>Formation Widgets</h2>
                 <div class="widget-container">
                     <?php foreach ($widgets as $widget): ?>
@@ -176,50 +178,121 @@ $widgets = $formationModel->getWidgets();
         </main>
     </div>
 
-    <script src="script.js">
-        <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // All forms on the page
-    const forms = document.querySelectorAll('form');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const addFormationForm = document.getElementById('addFormationForm');
+    const classFormInput = addFormationForm.querySelector('textarea[name="class"]');
+    const dateInput = addFormationForm.querySelector('input[name="date"]');
+    const urlInput = addFormationForm.querySelector('input[name="url_form"]');
 
-    forms.forEach(form => {
-        form.addEventListener('submit', function (e) {
-            let isValid = true;
-            const inputs = form.querySelectorAll('input, textarea');
+    if (!addFormationForm || !classFormInput || !dateInput || !urlInput) return; // Ensure form, class input, date input, and URL input exist
 
-            inputs.forEach(input => {
-                // Trim and check empty values
-                if (!input.value.trim()) {
+    // Set minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+
+    // Real-time validation for class_form (letters and spaces only)
+    classFormInput.addEventListener('input', function () {
+        validateClassField(classFormInput);
+    });
+
+    // On form submit, validate all fields
+    addFormationForm.addEventListener('submit', function (e) {
+        let isValid = true;
+        const inputs = addFormationForm.querySelectorAll('input, textarea');
+
+        // Remove old error messages
+        addFormationForm.querySelectorAll('.error-msg').forEach(msg => msg.remove());
+
+        inputs.forEach(input => {
+            const value = input.value.trim();
+            const name = input.getAttribute('name');
+
+            input.style.border = ""; // Reset border
+
+            // Check for empty fields
+            if (value === '') {
+                isValid = false;
+                showError(input, "This field is required");
+            } else {
+                // Additional validations
+                if (name === 'price_form' && isNaN(value)) {
                     isValid = false;
-                    input.style.border = "2px solid red";
+                    showError(input, "Price can only be a number");
+                }
 
-                    // Optionally, show a message near the field
-                    if (!input.nextElementSibling || !input.nextElementSibling.classList.contains('error-msg')) {
-                        const msg = document.createElement('span');
-                        msg.className = 'error-msg';
-                        msg.style.color = 'red';
-                        msg.style.fontSize = '0.9rem';
-                        msg.textContent = 'Ce champ est requis.';
-                        input.after(msg);
-                    }
-                } else {
-                    input.style.border = "1px solid #ccc";
-                    const next = input.nextElementSibling;
-                    if (next && next.classList.contains('error-msg')) {
-                        next.remove();
+                if (name === 'capacity_form' && (!Number.isInteger(Number(value)) || Number(value) < 1)) {
+                    isValid = false;
+                    showError(input, "Capacity must be a positive number");
+                }
+
+                // Validate date input (must be present or future)
+                if (name === 'date') {
+                    const selectedDate = new Date(value);
+                    const currentDate = new Date();
+                    currentDate.setHours(0, 0, 0, 0); // Set to the start of the day for comparison
+
+                    if (selectedDate < currentDate) {
+                        isValid = false;
+                        showError(input, "Set date cannot be older");
                     }
                 }
-            });
 
-            if (!isValid) {
-                e.preventDefault(); 
+                // Validate URL input (specific format)
+                if (name === 'url_form') {
+                    const urlRegex = /^www\.google\.meet\/[A-Za-z0-9]+$/; // Updated URL format validation for AAAAA
+                    if (!urlRegex.test(value)) {
+                        isValid = false;
+                        showError(input, "The URL link must be in the  www.google.meet/AAAAA format .");
+                    }
+                }
+
+                // Validate class_form (only letters and spaces)
+                if (name === 'class') {
+                    if (!/^[A-Za-zÀ-ÿ\s]+$/.test(value)) { // Letters and spaces only
+                        isValid = false;
+                        showError(input, "Le champ classe ne peut contenir que des lettres et des espaces.");
+                    }
+                }
             }
         });
+
+        if (!isValid) {
+            e.preventDefault(); // Prevent form submission if any field is invalid
+        }
     });
+
+    // Function to show error messages
+    function showError(input, message) {
+        input.style.border = "2px solid red"; // Highlight field with invalid input
+        const error = document.createElement('span');
+        error.classList.add('error-msg');
+        error.style.color = 'red';
+        error.style.fontSize = '0.9rem';
+        error.textContent = message;
+        input.after(error);
+    }
+
+    // Function to validate class_form field (only letters and spaces)
+    function validateClassField(input) {
+        const value = input.value.trim();
+        const regex = /^[A-Za-zÀ-ÿ\s]*$/; // Allow only letters and spaces
+
+        if (!regex.test(value)) {
+            input.style.border = "2px solid red"; // Highlight field with invalid input
+            let errorMsg = input.nextElementSibling;
+            if (!errorMsg || !errorMsg.classList.contains('error-msg')) {
+                showError(input, "The class field can only contain Letters and Spaces");
+            }
+        } else {
+            input.style.border = ""; // Reset border if valid
+            let errorMsg = input.nextElementSibling;
+            if (errorMsg && errorMsg.classList.contains('error-msg')) {
+                errorMsg.remove(); // Remove error message
+            }
+        }
+    }
 });
-</script>
-<style>
-</style>
     </script>
 </body>
 </html>

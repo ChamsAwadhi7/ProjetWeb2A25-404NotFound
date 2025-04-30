@@ -13,7 +13,7 @@ class FormationController {
         return $this->formationModel->getAllFormations();
     }
 
-    public function addFormation($formationId, $class, $date,$desc,$price,$url,$duration,$capacity) {
+    public function addFormation($class, $date,$desc,$price,$url,$duration,$capacity) {
         $this->formationModel->addFormation($formationId, $class, $date,$desc,$price,$url,$duration,$capacity);
     }
 

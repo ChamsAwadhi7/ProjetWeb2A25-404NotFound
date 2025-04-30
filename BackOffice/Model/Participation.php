@@ -6,38 +6,42 @@ class Participation {
     private $pdo;
 
     public function __construct() {
-        $this->pdo = config::getConnexion(); 
+        $this->pdo = config::getConnexion();
     }
 
-    // Fetch all participations
+    // Add participation
+    public function addParticipation($id_user) {
+        // Automatically use the current date when a user subscribes
+        $date_Part = date("Y-m-d H:i:s");
+        $stmt = $this->pdo->prepare("INSERT INTO participations (id_user, date_Part) VALUES (?, ?)");
+        return $stmt->execute([$id_user, $date_Part]);
+    }
+
+    // Get all participations
     public function getAllParticipations() {
-        $stmt = $this->pdo->query("SELECT * FROM participations");
+        $stmt = $this->pdo->query("SELECT p.id_Part, p.date_Part, u.id_user, u.nom_user, u.prenom_user
+                                   FROM participations p
+                                   JOIN user u ON p.id_user = u.id_user");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Add a new participation
-    public function addParticipation($date_Part) {
-        $stmt = $this->pdo->prepare("INSERT INTO participations (date_Part) VALUES (?)");
-        return $stmt->execute([$date_Part]);
+    // Get participation by ID
+    public function getParticipationById($id_Part) {
+        $stmt = $this->pdo->prepare("SELECT * FROM participations WHERE id_Part = ?");
+        $stmt->execute([$id_Part]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Update participation record
+    // Update participation
     public function updateParticipation($id_Part, $date_Part) {
         $stmt = $this->pdo->prepare("UPDATE participations SET date_Part = ? WHERE id_Part = ?");
         return $stmt->execute([$date_Part, $id_Part]);
     }
 
-    // Delete participation record
+    // Delete participation
     public function deleteParticipation($id_Part) {
         $stmt = $this->pdo->prepare("DELETE FROM participations WHERE id_Part = ?");
         return $stmt->execute([$id_Part]);
-    }
-
-    // Get a participation by ID
-    public function getParticipationById($id_Part) {
-        $stmt = $this->pdo->prepare("SELECT * FROM participations WHERE id_Part = ?");
-        $stmt->execute([$id_Part]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 ?>

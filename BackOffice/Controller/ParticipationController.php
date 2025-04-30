@@ -9,29 +9,45 @@ class ParticipationController {
         $this->participationModel = new Participation($pdo);
     }
 
-    // Get all participations
+    // Get all participations along with user details
     public function getAllParticipations() {
         return $this->participationModel->getAllParticipations();
     }
 
     // Add new participation
-    public function addParticipation($date_Part) {
-        $this->participationModel->addParticipation($date_Part);
+    public function addParticipation($id_user) {
+        return $this->participationModel->addParticipation($id_user);
     }
 
-    // Get participation by ID
-    public function getParticipationById($id_Part) {
-        return $this->participationModel->getParticipationById($id_Part);
-    }
+    // Handle AJAX subscription request
+    public function handleAjaxSubscription() {
+        // Ensure you have the correct data sent in the request
+        if (isset($_POST['title']) && isset($_POST['date'])) {
+            $title = $_POST['title'];
+            $date = $_POST['date'];
 
-    // Update participation
-    public function updateParticipation($id_Part, $date_Part) {
-        $this->participationModel->updateParticipation($id_Part, $date_Part);
-    }
+            // Simulate getting user ID, this can be adjusted to your actual user logic
+            $id_user = 1;  // This should be the actual user ID from session or other source
 
-    // Delete participation
-    public function deleteParticipation($id_Part) {
-        $this->participationModel->deleteParticipation($id_Part);
+            // Add the participation to the database
+            $isAdded = $this->participationModel->addParticipation($id_user);
+
+            // Return a JSON response
+            if ($isAdded) {
+                echo json_encode(['status' => 'success', 'message' => 'Subscription successful']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Failed to save subscription']);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Missing required parameters']);
+        }
     }
+}
+
+// Handling the AJAX request when this script is accessed directly
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $pdo = config::getConnexion();  // Get the database connection
+    $controller = new ParticipationController($pdo);  // Instantiate the controller
+    $controller->handleAjaxSubscription();  // Call the method to handle the subscription
 }
 ?>

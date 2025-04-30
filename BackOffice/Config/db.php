@@ -3,7 +3,7 @@
 class config {
     public static function getConnexion() {
         $host = 'localhost';
-        $dbname = 'formationsparticipations';
+        $dbname = 'nextstep';
         $username = 'root'; 
         $password = '';  
 
