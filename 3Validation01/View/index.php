@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Smooth Navbar</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <style>
+      /* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    overflow-x: hidden;
+    min-height: 100vh; 
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+span{
+    color: #fb943b;
+}
+
+.logo img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #fb943b;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+.dropbtn:hover{
+    border-bottom: 1px solid #fb943b;
+    
+}
+
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    top: 100%;
+    left: 0;
+    padding: 10px 0;
+}
+.dropdown-menu i {
+    margin-right: 8px; /* Space between icon and text */
+    font-size: 20px;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.dropdown-menu li {
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    width: 220px; /* Ensures a uniform width */
+}
+  
+
+.dropdown-menu a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: 16px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+.dropdown-menu i {
+  font-size: 18px;
+  margin-right: 10px; /* Ensures spacing between icon and text */
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.dropdown-menu li:hover {
+  background: #f5f5f5;
+}
+.dropdown-menu li:hover i {
+  transform: scale(1.2);
+  color: #fb943b;
+}
+  
+
+
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Search Box */
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #eaeaea;
+    padding: 8px;
+    border-radius: 20px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: none;
+    padding: 5px 10px;
+}
+
+
+.search-category {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+    background: #eaeaea;
+    border-radius: 20px;
+}
+
+/* Login Button */
+.login-btn {
+    background: #fb943b;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #0056b3;
+}
+
+/* Home Section */
+.home {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    animation: zoomEffect 10s infinite alternate ease-in-out;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    z-index: -1;
+}
+
+.content {
+    z-index: 1;
+    max-width: 600px;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+.content h3 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.content p {
+  margin-bottom: 70px;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 14px 35px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    box-shadow: rgba(255, 255, 255, 0.3);
+}
+
+.btn:hover {
+    border: 2px solid #fb943b;
+    transform: scale(1.08);
+    box-shadow: #fb943b;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomEffect {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+/* About Us Section */
+.about-item, h2, p {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease-in-out;
+  }
+  
+.about-section {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    border-radius: 10px;
+  }
+  
+  /* Container */
+  .about-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Title */
+  .about-section h2 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  
+  /* Paragraph */
+  .about-section p {
+    font-size: 18px;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 40px;
+  }
+  
+  /* About Items */
+  .about-content {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .about-item {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    width: 300px;
+    border-radius: 15px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Image Styling */
+  .about-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    transition: transform 0.5s ease-in-out;
+  }
+.about-item h3,
+.about-item p {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, 50px);
+  opacity: 0;
+  color: white;
+  text-align: center;
+  width: 80%;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+  
+  /* Hover Effect */
+  .about-item:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+  
+  /* Headings */
+  .about-item p {
+    font-size: 16px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 8px;
+  }
+  .about-item:hover img {
+    transform: scale(1.1);
+  }
+  
+  .about-item:hover h3,
+  .about-item:hover p,
+  .about-item:hover .read-more-btn{
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  
+  /* Text */
+  .about-item p {
+    font-size: 16px;
+    color: #666;
+  }
+  
+.about-item .read-more-btn {
+    position: absolute;
+    width: 85px;
+    height: 50px;
+    top: 10px;
+    right: 10px;
+    padding: 8px 15px;
+    background: rgba(255, 107, 107, 0.3);;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    backdrop-filter: blur(8px); /* Apply blur effect */
+
+  }
+  
+  
+.about-item:hover .read-more-btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .about-item .read-more-btn:hover {
+    background: rgba(255, 107, 107, 0.6);
+    transform: scale(1.05);
+  }
+  .about-item .read-more-btn:hover i {
+    transform: translateX(5px);
+  }
+  .divider {
+    margin: 30px 0; /* Space above and below the line */
+    height: 2px; /* Height of the line */
+    background: linear-gradient(to right, rgba(255, 107, 107, 0.6), rgba(255, 107, 107, 0.3), rgba(255, 107, 107, 0.6)); /* Gradient effect */
+    border-radius: 2px;
+    position: relative;
+  }
+  
+  .divider::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 30px;
+    height: 5px;
+    background: #ff6b6b; /* Add a dot or stylish marker in the center */
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+/* 🌟 Conteneur principal */
+/* AI Search Section */
+.ai-search-container {
+  position: relative;
+  text-align: center;
+  padding: 80px 20px;
+  background: rgba(255, 107, 107, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 800px;
+  margin: auto;
+  overflow: visible;
+}
+
+/* Heading */
+.ai-search-container h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+/* Paragraph */
+.ai-search-container p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+  top: 100px;
+}
+
+
+/* Floating Images */
+.floating-image {
+  position: absolute;
+  width: 80px;
+  height: auto;
+  opacity: 0.8;
+  width: 150px;
+  height: 90px;
+  border-radius: 20px;
+  animation: float 4s ease-in-out infinite;
+  z-index: 10;
+}
+.floating-image4{
+  position: absolute;
+  width: 80px;
+  height: auto;
+  opacity: 0.8;
+  width: 110px;
+  height: 90px;
+  border-radius: 20px;
+  animation: float 4s ease-in-out infinite;
+  z-index: 10;
+}
+
+.img1 { left: -40px; top: 0%; animation-delay: 0s; }
+.img2 { right: -100px; top: 5%; animation-delay: 1s; }
+.img3 { left: -100px; bottom: 0%; animation-delay: 2s; }
+.img4 { right: -80px; bottom: 10%; animation-delay: 3s; }
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(15px); }
+  100% { transform: translateY(0px); }
+}
+
+/* General container and text styling */
+
+
+/* Container for the job cards */
+.job-section {
+  background-color: #f7f7f7;
+  padding: 60px 0;
+}
+
+.job-thumb {
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  width: 500px;
+}
+
+.job-thumb:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Image styles */
+.job-image {
+  width: 100%;
+  height: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.job-thumb:hover .job-image {
+  transform: scale(1.05);
+}
+
+/* Body of the card */
+.job-body {
+  background-color: #fff;
+  padding: 20px;
+  text-align: left;
+  border-radius: 0 0 8px 8px;
+}
+
+.job-title {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.job-title-link {
+  text-decoration: none;
+  color: #333;
+}
+
+.job-price {
+  font-size: 1.1rem;
+  color: #FF5722;
+}
+
+.job-location,
+.job-date {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Hover effects */
+.job-thumb:hover .job-title,
+.job-thumb:hover .job-price {
+  color: #FF5722;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .job-section .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+  .job-section .col-lg-4 {
+      flex: 0 0 30%;
+      margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .job-section .col-lg-4 {
+      flex: 0 0 100%;
+  }
+}
+/* Images container (Z shape) */
+.images-container {
+  position: absolute;
+  top: 60%;
+  right: 5%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  transform: rotate(-10deg);
+}
+
+.images-container img {
+  width: 200px;
+  height: auto;
+  opacity: 0; /* Commence par être invisible */
+  transform: translateX(50px); /* Décale les images à droite au départ */
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* Animation fluide */
+}
+
+.image.show {
+  opacity: 1; /* L'image devient visible */
+  transform: translateX(0); /* L'image revient à sa position d'origine */
+}
+
+@media (max-width: 768px) {
+  .images-container {
+      top: 70%;
+      right: 10%;
+      flex-direction: row;
+      gap: 10px;
+      transform: rotate(0deg); /* Supprime la rotation pour les petits écrans */
+  }
+
+  .images-container img {
+      width: 120px; /* Taille réduite des images pour les petits écrans */
+  }
+}
+.ai-chat-container {
+  position: fixed;
+  top: 230px;
+  right: 40px;
+  width: 700px;
+  max-width: 1000px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+.ai-chat-box {
+  height: 80px;
+  overflow-y: auto;
+  padding: 15px;
+  background: #f4f4f4;
+  border-radius: 15px 15px 0 0;
+  display: flex;
+  flex-direction: column;
+  bottom: 300px;
+}
+
+.ai-message, .user-message {
+  padding: 10px 15px;
+  border-radius: 18px;
+  max-width: 80%;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+}
+
+.ai-message {
+  background: #e0e0e0;
+  align-self: flex-start;
+}
+
+.user-message {
+  background: #ff6b6b;
+  color: white;
+  align-self: flex-end;
+}
+
+.typing {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.ai-chat-input-horizontal {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border-top: 1px solid #ddd;
+  border-radius: 0 0 20px 20px;
+}
+
+.ai-chat-input-horizontal input {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  background: #f4f4f4;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.ai-chat-input-horizontal input:focus {
+  background: #e0e0e0;
+}
+
+.ai-chat-btn {
+  background: #ff6b6b;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: 0.3s ease-in-out;
+}
+
+.ai-chat-btn:hover {
+  background: #ff4757;
+  transform: scale(1.1);
+}
+/* From Uiverse.io by ilkhoeri */ 
+.wrapper {
+  top: 150px;  
+  left: 800px;
+  width: 400px;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner {
+  --w: 100px;
+  --h: 150px;
+  --translateZ: calc((var(--w) + var(--h)) + 0px);
+  --rotateX: -15deg;
+  --perspective: 1000px;
+  position: absolute;
+  width: var(--w);
+  height: var(--h);
+  top: 25%;
+  left: calc(50% - (var(--w) / 2) - 2.5px);
+  z-index: 2;
+  transform: translate(-50%, -50%) perspective(var(--perspective));
+  will-change: transform;
+  transform-style: preserve-3d;
+  transform: perspective(var(--perspective));
+  animation: rotating 20s linear infinite; /* */
+}
+@keyframes rotating {
+  from {
+    transform: perspective(var(--perspective)) rotateX(var(--rotateX))
+      rotateY(0);
+  }
+  to {
+    transform: perspective(var(--perspective)) rotateX(var(--rotateX))
+      rotateY(1turn);
+  }
+}
+:root {
+  --translateZ: 200px;
+}
+.card {
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  border: 2px solid rgba(var(--color-card));
+  border-radius: 12px;
+  overflow: hidden;
+  inset: 0;
+  transform: rotateY(calc((360deg / var(--quantity)) * var(--index)))
+    translateZ(var(--translateZ));
+}
+.img {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+  background: #0000
+    radial-gradient(
+      circle,
+      rgba(var(--color-card), 0.2) 0%,
+      rgba(var(--color-card), 0.6) 80%,
+      rgba(var(--color-card), 0.9) 100%
+    );
+}
+
+
+.wrapper .card .img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  -webkit-box-reflect: below 5px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+}
+
+.wrapper .card .img::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  filter: blur(8px);
+  opacity: 0.5;
+  border-radius: 10px;
+}
+.wrapper .card .title {
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(var(--color-card), 0.8);
+  color: black; /* Changed to white for better contrast */
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border-radius: 0 0 12px 12px; /* Rounded corners at the bottom */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.wrapper .card:hover .title {
+  background-color: rgba(var(--color-card), 1); /* Darker background on hover */
+  transform: translateY(-5px); /* Slight lift on hover */
+}
+h2 .services-title {
+  color: #333; /* Visible color */
+  font-size: 2rem; /* Adjust size */
+  font-weight: bold;
+  margin: 20px;
+  padding: 10px;
+  position: relative; /* Needed for z-index to work */
+  z-index: 10; /* Bring it to the front */
+  background-color: #000; /* Optional background for visibility */
+}
+
+.side-image {
+  width: 100px;
+  height: auto;
+  margin: 0 20px;
+}
+
+.counter-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 40px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+  color: black;
+  text-align: center;
+  backdrop-filter: blur(15px);
+  font-family: 'Poppins', sans-serif;
+  max-width: 800px;
+  margin: auto;
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease-in-out;
+  backdrop-filter: blur(10px);
+  width: 800px;
+}
+
+.counter:hover {
+  transform: scale(1.1);
+}
+
+.counter i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.counter:hover i {
+  transform: rotate(10deg);
+}
+
+.counter h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.counter p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: inline-block;
+  backdrop-filter: blur(5px);
+  z-index: 10;
+}
+
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.counter-wrapper > div {
+  animation: fadeInUp 0.8s ease-in-out forwards;
+}
+
+
+.container2{
+  max-width: 950px;
+  width: 100%;
+  overflow: hidden;
+  padding: 80px 0;
+  flex-grow: 1;
+}
+.container2 .main-card{
+  display: flex;
+  justify-content: space-evenly;
+  width: 200%;
+  transition: 1s;
+}
+#two:checked ~ .main-card{
+  margin-left: -100%;
+}
+.container2 .main-card .cards{
+  width: calc(100% / 2 - 10px);
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 20px;
+  justify-content: space-between;
+}
+.main-card .cards .card{
+  width: calc(100% / 3 - 10px);
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s ease;
+}
+.main-card .cards .card:hover{
+  transform: translateY(-15px);
+}
+.cards .card .content{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.cards .card .content .img{
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  padding: 3px;
+  background: #FF676D;
+  margin-bottom: 14px;
+}
+.card .content .img img{
+  height: 100%;
+  width: 100%;
+  border: 3px solid #ffff;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.card .content .name{
+  font-size: 20px;
+  font-weight: 500;
+}
+.card .content .job{
+  font-size: 20px;
+  color: #FF676D;
+}
+.card .content .media-icons{
+  margin-top: 10px;
+  display: flex;
+}
+.media-icons a{
+  text-align: center;
+  line-height: 33px;
+  height: 35px;
+  width: 35px;
+  margin: 0 4px;
+  font-size: 14px;
+  color: #FFF;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: #FF676D;
+  transition: all 0.3s ease;
+}
+.media-icons a:hover{
+  color: #FF676D;
+  background-color: #fff;
+  border-color: #FF676D;
+}
+ .container .button{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+.button label{
+  height: 15px;
+  width: 15px;
+  border-radius: 20px;
+  background: #fff;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.button label.active{
+  width: 35px;
+}
+#one:checked ~ .button .one{
+  width: 35px;
+}
+#one:checked ~ .button .two{
+  width: 15px;
+}
+#two:checked ~ .button .one{
+  width: 15px;
+}
+#two:checked ~ .button .two{
+  width: 35px;
+}
+input[type="radio"]{
+  display: none;
+}
+@media (max-width: 768px) {
+  .main-card .cards .card{
+    margin: 20px 0 10px 0;
+    width: calc(100% / 2 - 10px);
+  }
+}
+@media (max-width: 600px) {
+  .main-card .cards .card{
+    /* margin: 20px 0 10px 0; */
+    width: 100%;
+  }
+}
+/**nitro**/
+.plan {
+  border-radius: 8px;
+  background: linear-gradient(to bottom, #f9f9f9, #eaeaea);
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #333;
+  width: 250px;
+  margin: 20px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.plan .title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #3c3c3c;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.plan .icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px auto;
+  border-radius: 50%;
+  background-color: #e0f7fa; /* default background for icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plan.start .icon {
+  background-color: #d3f3d3;
+}
+
+.plan.advanced .icon {
+  background-color: #d0efff;
+}
+
+.plan.premium .icon {
+  background-color: #d3f0f7;
+}
+
+.plan .features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.plan .features li {
+  margin: 8px 0;
+}
+
+.plan .pricing {
+  background-color: #91e1c5;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding: 10px 0;
+  border-radius: 0 0 8px 8px;
+  margin-top: 20px;
+}
+
+.plan.start .pricing {
+  background-color: #91e1c5;
+}
+
+.plan.advanced .pricing {
+  background-color: #00bcd4;
+}
+
+.plan.premium .pricing {
+  background-color: #007c91;
+}
+
+/* Working Space Section Styling */
+#workspace-section {
+  background-color: #ffffff;
+  padding: 60px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading */
+#workspace-section h2 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+}
+
+/* Table Styling */
+#workspace-section table {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Table Head */
+#workspace-section thead {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+#workspace-section th {
+  padding: 16px 24px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Table Body */
+#workspace-section td {
+  padding: 14px 24px;
+  font-size: 0.95rem;
+  color: #444;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Row Hover Effect */
+#workspace-section tbody tr:hover {
+  background-color: #f9fafb;
+  transition: background-color 0.2s ease;
+}
+
+/* Responsive Table Wrapper */
+#workspace-section .overflow-x-auto {
+  overflow-x: auto;
+  padding: 0 10px;
+}
+
+
+/* Workshop Section Styling */
+#workshop-section {
+  background-color: #f9fafb;
+  padding: 60px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading */
+#workshop-section h2 {
+  text-align: center;
+  color: #1f2937;
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+}
+
+/* Table */
+#workshop-section table {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Table Head */
+#workshop-section thead {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+#workshop-section th {
+  padding: 16px 24px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: left;
+}
+
+/* Table Body */
+#workshop-section td {
+  padding: 14px 24px;
+  font-size: 0.95rem;
+  color: #444;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Row Hover */
+#workshop-section tbody tr:hover {
+  background-color: #f3f4f6;
+  transition: background-color 0.2s ease;
+}
+
+/* Responsive Wrapper */
+#workshop-section .overflow-x-auto {
+  overflow-x: auto;
+  padding: 0 10px;
+}
+
+
+/* Participate Button Styling */
+.participate-btn {
+  background-color: #2563eb;
+  color: #ffffff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.participate-btn:hover {
+  background-color: #1d4ed8;
+}
+
+
+/* Animation fade-in pour faire apparaître les éléments */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation pour le bouton au survol */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.custom-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 700px;
+  background: #f5f5f5;
+  box-shadow: 0 30px 50px #dbdbdb;
+}
+
+.custom-container .custom-slider .custom-slide-item {
+  width: 200px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 20px;
+  box-shadow: 0 30px 50px #505050;
+  background-position: 50% 50%;
+  background-size: cover;
+  display: inline-block;
+  transition: 0.5s;
+}
+
+.custom-slider .custom-slide-item:nth-child(1),
+.custom-slider .custom-slide-item:nth-child(2) {
+  top: 0;
+  left: 0;
+  transform: translate(0, 0);
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.custom-slider .custom-slide-item:nth-child(3) {
+  left: 50%;
+}
+
+.custom-slider .custom-slide-item:nth-child(4) {
+  left: calc(50% + 220px);
+}
+
+.custom-slider .custom-slide-item:nth-child(5) {
+  left: calc(50% + 440px);
+}
+
+.custom-slider .custom-slide-item:nth-child(n + 6) {
+  left: calc(50% + 660px);
+  opacity: 0;
+}
+
+.custom-slide-item .custom-content {
+  position: absolute;
+  top: 50%;
+  left: 100px;
+  width: 300px;
+  text-align: left;
+  color: #eee;
+  transform: translate(0, -50%);
+  font-family: system-ui;
+  display: none;
+}
+
+.custom-slider .custom-slide-item:nth-child(2) .custom-content {
+  display: block;
+}
+
+.custom-content .custom-title {
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: bold;
+  opacity: 0;
+  animation: animate 1s ease-in-out 1 forwards;
+}
+
+.custom-content .custom-description {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: animate 1s ease-in-out 0.3s 1 forwards;
+}
+
+.custom-content button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  animation: animate 1s ease-in-out 0.6s 1 forwards;
+}
+
+@keyframes animate {
+  from {
+      opacity: 0;
+      transform: translate(0, 100px);
+      filter: blur(33px);
+  }
+
+  to {
+      opacity: 1;
+      transform: translate(0);
+      filter: blur(0);
+  }
+}
+
+.custom-buttons {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 20px;
+}
+
+.custom-buttons button {
+  width: 40px;
+  height: 35px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+  border: 1px solid #000;
+  transition: 0.3s;
+}
+
+.custom-buttons button:hover {
+  background: #ababab;
+  color: #fff;
+}
+.custom-content {
+  position: relative;
+  padding: 20px;
+  color: white; /* Text color */
+  z-index: 1; /* Ensures the text stays above the blurred background */
+  text-align: center; /* Centers the text */
+  font-size: 1.2rem; /* Increases text size for readability */
+  font-weight: 500; /* Semi-bold text for emphasis */
+  letter-spacing: 1px; /* Adds slight spacing between letters for elegance */
+}
+
+.custom-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Slight dark overlay to enhance readability */
+  backdrop-filter: blur(10px); /* Apply the blur effect */
+  z-index: -1; /* Places the blur behind the text */
+  border-radius: 10px; /* Optional: rounds the corners of the background */
+}
+
+.custom-content .custom-title {
+  font-family: 'Poppins', sans-serif; /* Ensures title uses the same font */
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: bold;
+  opacity: 0;
+  animation: animate 1s ease-in-out 1 forwards;
+}
+
+.custom-content .custom-description {
+  font-family: 'Poppins', sans-serif; /* Ensures description uses the same font */
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: animate 1s ease-in-out 0.3s 1 forwards;
+}
+
+.custom-slide-item button{
+  background-color: #ff9900; /* Bright orange background */
+    color: white; /* White text color */
+    padding: 12px 24px; /* Top and bottom padding: 12px, left and right padding: 24px */
+    font-size: 16px; /* Font size */
+    font-weight: 600; /* Bold text */
+    border: none; /* Remove default border */
+    border-radius: 30px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+.custom-slide-item button:hover {
+  background-color: #e68900; /* Slightly darker shade on hover */
+  transform: scale(1.1); /* Slightly grow the button */
+}
+.custom-slide-item button:focus {
+  outline: none; /* Remove default outline on focus */
+  box-shadow: 0 0 5px rgba(255, 153, 0, 0.5); /* Add a glow effect on focus */
+}
+
+/* Modal Styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding-top: 50px;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  width: 70%;
+  max-width: 1000px;
+}
+
+/* Left section (image) */
+.modal-left {
+  flex: 1;
+  padding: 10px;
+}
+
+#eventImage {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Right section (event details) */
+.modal-right {
+  flex: 2;
+  padding: 10px;
+  color: #333;
+}
+
+/* Event Title */
+#eventTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Event details */
+p {
+  color: #000;
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+strong {
+  color: #000;
+  font-weight: 600;
+}
+
+/* Icons Styling */
+.fas {
+  margin-right: 8px;
+  color: #ff5e57;
+}
+
+/* Close button */
+.close-btn {
+  color: #aaa;
+  font-size: 30px;
+  font-weight: bold;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .modal-content {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .modal-left {
+    margin-bottom: 20px;
+  }
+
+  #eventImage {
+    width: 100%;
+  }
+}
+
+.flip-row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.flip-card-box {
+  width: 200px;
+  height: 300px;
+  perspective: 1000px;
+  margin: 10px;
+}
+
+.flip-card-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-box:hover .flip-card-wrap {
+  transform: rotateY(180deg);
+}
+
+.flip-front,
+.flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.flip-front {
+  background-color: #ffffff;
+  color: #333;
+}
+
+.flip-back {
+  background-color: #1e88e5;
+  color: #000;
+  transform: rotateY(180deg);
+}
+.evL{
+  color:black;
+  opacity: 1 !important;
+}
+.evTime{
+  color:black;
+  opacity: 1 !important;
+}
+.evDesc{
+  color:black;
+  opacity: 1 !important;
+}
+.evT{
+  color:black;
+  opacity: 1 !important;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+body{
+	line-height: 1.5;
+	font-family: 'Poppins', sans-serif;
+}
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+.container{
+	max-width: 1170px;
+	margin:auto;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+ul{
+	list-style: none;
+}
+.footer{
+	background-color: #24262b;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+}
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: #e91e63;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li a{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: #ffffff;
+	padding-left: 8px;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	background-color: rgba(255,255,255,0.2);
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+	color: #ffffff;
+	transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+	color: #24262b;
+	background-color: #ffffff;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+}
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <img
+          src="image/27b64a1f-1d13-458c-8230-3fbaa299beae-removebg.png"
+          alt="Logo"
+          class="logo-img"
+        />
+        Next<span>Step</span>
+      </div>
+      <ul class="nav-links">
+        <li class="dropdown">
+          <button class="dropbtn">
+            Explore Opportunities <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#"
+                ><i class="fas fa-lightbulb"></i> Innovative Projects</a
+              >
+            </li>
+            <!-- Icon for Innovation -->
+            <li>
+              <a href="#"
+                ><i class="fas fa-users"></i> Collaborative Ventures</a
+              >
+            </li>
+            <!-- Icon for Collaboration -->
+            <li>
+              <a href="#"
+                ><i class="fas fa-dollar-sign"></i> Funding Opportunities</a
+              >
+            </li>
+            <!-- Icon for Funding -->
+            <li>
+              <a href="#"><i class="fas fa-handshake"></i> Partnerships</a>
+            </li>
+            <!-- Icon for Partnerships -->
+          </ul>
+        </li>
+        <li class="dropdown">
+          <button class="dropbtn">
+            Our Courses <i class="fas fa-chevron-down"></i>
+            <!-- Changed to 'Our Courses' -->
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="coursF.php">
+              <i class="fas fa-book"></i> Courses</a>
+          </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-rocket"></i> Entrepreneurship Basics</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-chart-line"></i> Business Strategies</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-lightbulb"></i> Innovation Workshops</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-user-tie"></i> Leadership Programs</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <button class="dropbtn">
+            Our Events <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="eventsF.php"
+                ><i class="fas fa-calendar-alt"></i> Our Events</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <button class="dropbtn">
+            Incubator <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="incubator.html #nitro-section"><i class="fas fa-bolt"></i> Nitro Plans</a></li>
+            <li><a href="incubator.html #workspace-section"><i class="fas fa-chair"></i> Working Space</a></li>
+            <li><a href="incubator.html #workshop-section"><i class="fas fa-chalkboard-teacher"></i> Workshops</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <button class="dropbtn">
+            Startup <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="startup.html"><i class="fas fa-cogs"></i> Startup</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <button class="dropbtn">
+            Why Us <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#"><i class="fas fa-cogs"></i> How It Works</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-trophy"></i> Success Stories</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-tags"></i> Pricing</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-question-circle"></i> FAQ</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div class="search-box">
+        <input type="text" placeholder="Search..." />
+        <select class="search-category">
+          <option value="project">🔍 Project</option>
+          <option value="startup">🚀 Startup</option>
+        </select>
+      </div>
+      <button class="login-btn"><i class="fas fa-user"></i> Log In</button>
+      <div class="containerr" id="containerr" style="display: none;">
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Sign in</h1>
+                <span>or use your account</span>
+                <input type="email" placeholder="Email" required />
+                <input type="password" placeholder="Password" required />
+                <a href="#">Forgot your password?</a>
+                <button>Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Back to Building the Future!</h1>
+                    <p>Your next big idea starts here. Log in to stay connected, collaborate, and turn innovation into impact!</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Join the Movement of Innovators!</h1>
+                    <p>The future is shaped by those who dare to create. Sign up now and be part of a community that turns ideas into reality!</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </nav>
+    <section class="home" id="home">
+      <video autoplay muted loop class="background-video">
+        <source src="image/video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="overlay"></div>
+      <div class="content" id="content">
+        <h3>Move Forward, Stay Ahead</h3>
+        <p>
+          Join us and take your Project to the next level with innovation and
+          expertise.
+        </p>
+        <a href="#" class="btn">Get Ready with Us</a>
+      </div>
+    </section>
+    <div class="counter-wrapper">
+      <div class="counter">
+          <i class="fas fa-users" style="color: #ff5733;"></i>
+          <h1 class="count" data-target="1254">0</h1>
+          <h4>New Visitors Every Week</h4>
+      </div>
+      <div class="counter">
+          <i class="fas fa-smile" style="color: #f4c542;"></i>
+          <h1 class="count" data-target="12168">0</h1>
+          <h4>Happy Customers Every Year</h4>
+      </div>
+      <div class="counter">
+          <i class="fas fa-trophy" style="color: #4caf50;"></i>
+          <h1 class="count" data-target="2172">0</h1>
+          <h4>Won Amazing Awards</h4>
+      </div>
+      <div class="counter">
+          <i class="fas fa-building" style="color: #2196f3;"></i>
+          <h1 class="count" data-target="732">0</h1>
+          <h4>New Listings Every Week</h4>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <section id="about-us" class="about-section">
+      <div class="container">
+        <h2 data-aos="fade-up">About Us</h2>
+        <p data-aos="fade-up">
+          We are dedicated to fostering innovation and entrepreneurship...
+        </p>
+        <div class="about-content">
+          <div class="about-item" data-aos="fade-up">
+            <img src="image/pexels-pixabay-355952.jpg" alt="Innovation" />
+            <h3>Innovation</h3>
+            <p>We help turn groundbreaking ideas into successful businesses.</p>
+            <a href="#" class="read-more-btn"
+              >Read More <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="about-item" data-aos="fade-up" data-aos-delay="200">
+            <img src="image/pexels-fauxels-3184418.jpg" alt="Teamwork" />
+            <h3>Collaboration</h3>
+            <p>We believe in the power of partnerships and teamwork.</p>
+            <a href="#" class="read-more-btn"
+              >Read More <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="about-item" data-aos="fade-up" data-aos-delay="400">
+            <img src="image/pexels-weekendplayer-187041.jpg" alt="Growth" />
+            <h3>Growth</h3>
+            <p>Our platform helps entrepreneurs scale and succeed.</p>
+            <a href="#" class="read-more-btn"
+              >Read More <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="flip-row">
+      <div class="flip-card-box">
+        <div class="flip-card-wrap">
+          <div class="flip-front">
+            <h2>Front 1</h2>
+          </div>
+          <div class="flip-back">
+            <h2>Back 1</h2>
+          </div>
+        </div>
+      </div>
+  
+      <div class="flip-card-box">
+        <div class="flip-card-wrap">
+          <div class="flip-front">
+            <h2>Front 2</h2>
+          </div>
+          <div class="flip-back">
+            <h2>Back 2</h2>
+          </div>
+        </div>
+      </div>
+  
+      <div class="flip-card-box">
+        <div class="flip-card-wrap">
+          <div class="flip-front">
+            <h2>Front 3</h2>
+          </div>
+          <div class="flip-back">
+            <h2>Back 3</h2>
+          </div>
+        </div>
+      </div>
+  
+      <div class="flip-card-box">
+        <div class="flip-card-wrap">
+          <div class="flip-front">
+            <h2>Front 4</h2>
+          </div>
+          <div class="flip-back">
+            <h2>Back 4</h2>
+          </div>
+        </div>
+      </div>
+  
+      <div class="flip-card-box">
+        <div class="flip-card-wrap">
+          <div class="flip-front">
+            <h2>Front 5</h2>
+          </div>
+          <div class="flip-back">
+            <h2>Back 5</h2>
+          </div>
+        </div>
+      </div>
+  
+      <div class="flip-card-box">
+        <div class="flip-card-wrap">
+          <div class="flip-front">
+            <h2>Front 6</h2>
+          </div>
+          <div class="flip-back">
+            <h2>Back 6</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ai-search-container" id="ai-search-container">
+      <h2 data-aos="fade-up">Empowering visionaries to innovate, create, and lead the future of entrepreneurship.</h2>
+      <p data-aos="fade-up">
+        Our AI-powered search engine helps you find the right opportunities,
+        courses, and resources to take your project to the next level.
+      </p>
+      <!-- AI Search Box -->
+      <div class="ai-chat-container">
+        <div class="ai-chat-box" id="chat-box">
+          <div class="ai-message">👋 Hello! Ask me anything about our services, startups, or projects.</div>
+        </div>
+        <div class="ai-chat-input-horizontal">
+          <i class="fas fa-robot ai-input-icon"></i>
+          <input type="text" id="ai-chat-input" placeholder="Type your question..." />
+          <button class="ai-chat-btn" id="send-ai-btn">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Images dispersées -->
+      <img src="image/pexels-mart-production-7550310.jpg" class="floating-image img1" />
+      <img src="image/pexels-thirdman-7181111.jpg" class="floating-image img2" />
+      <img src="image/pexels-rdne-7414214.jpg" class="floating-image img3" />
+      <img src="image/pexels-edmond-dantes-8069014.jpg" class="floating-image4 img4" />
+    </div>
+    <br><br><br>
+    <hr>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col">
+            <h4>company</h4>
+            <ul>
+              <li><a href="#">about us</a></li>
+              <li><a href="#">our services</a></li>
+              <li><a href="#">privacy policy</a></li>
+              <li><a href="#">affiliate program</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>get help</h4>
+            <ul>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">shipping</a></li>
+              <li><a href="#">returns</a></li>
+              <li><a href="#">order status</a></li>
+              <li><a href="#">payment options</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>follow us</h4>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+   </footer> 
+    <script src="script.js"></script>
+    <!-- AOS Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: false,
+      });
+    </script>
+  </body>
+</html>
