@@ -1,0 +1,95 @@
+body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; }
+        .container { max-width: 900px; margin: 20px auto; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); overflow: hidden; }
+        .cover { width: 100%; height: 300px; object-fit: cover; }
+        .content { padding: 30px; }
+        h1 { font-size: 2rem; margin-bottom: 10px; }
+        .description { margin: 20px 0; color: #555; }
+        .info-line { margin: 10px 0; font-size: 1.1rem; }
+        .stars { display: flex; margin-top: 10px; }
+        .stars span {
+            font-size: 30px; cursor: pointer; color: #ccc;
+        }
+        .stars span.selected { color: #f1c40f; }
+        .btn {
+            background-color: #27ae60; color: white;
+            padding: 10px 20px; border: none; border-radius: 5px;
+            cursor: pointer; font-size: 1rem;
+        }
+        .btn:hover { background-color: #1e8449; }
+
+        .comment-section { margin-top: 40px; }
+        .comment { border-bottom: 1px solid #ddd; padding: 15px 0; }
+        .comment h4 { margin: 0; color: #2c3e50; }
+        .comment small { color: #999; }
+        .comment p { margin: 5px 0 0; }
+
+        .comment-form textarea {
+            width: 100%; padding: 10px; font-size: 1rem;
+            border: 1px solid #ccc; border-radius: 5px; margin-bottom: 10px;
+        }
+        .comment-form input[type="text"] {
+            width: 100%; padding: 10px; font-size: 1rem;
+            border: 1px solid #ccc; border-radius: 5px; margin-bottom: 10px;
+        }
+
+
+        .chapitres { margin-top: 30px; }
+.chapitre {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px; border-bottom: 1px solid #eee;
+}
+.chapitre label { flex: 1; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.check-icon {
+    display: inline-block;
+    width: 20px; height: 20px;
+    border: 2px solid gray; color: transparent;
+    border-radius: 50%; text-align: center; line-height: 18px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+input[type="checkbox"]:checked + .check-icon {
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+    color: white;
+}
+.lien-contenu {
+    text-decoration: none;
+    color: #2980b9;
+}
+.lien-contenu:hover {
+    text-decoration: underline;
+}
+
+.btn-retour {
+    display: inline-block;
+    margin-bottom: 20px;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn-retour:hover {
+    background-color: #2980b9;
+}
+
+
+.btn-retour {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-retour:hover {
+    background-color: #0056b3;
+}
+
+
