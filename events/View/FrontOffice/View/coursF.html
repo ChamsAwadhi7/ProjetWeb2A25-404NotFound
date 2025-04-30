@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="website icon" type="PNG" href="image/27b64a1f-1d13-458c-8230-3fbaa299beae-removebg.png">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+  <title>Parcourir les Cours</title>
+  <style>
+    :root {
+      --main-color: #4CAF50;
+      --hover-color: #45a049;
+      --bg-light: #f9f9f9;
+      --text-dark: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-light);
+      padding: 20px;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--text-dark);
+    }
+
+    .course-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .course-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .course-image {
+      flex: 1;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .course-info {
+      background: rgba(0, 0, 0, 0.65);
+      color: #fff;
+      padding: 16px;
+      width: 100%;
+    }
+
+    .course-info h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .course-info p {
+      font-size: 14px;
+      margin: 0 0 12px;
+    }
+
+    .course-info button {
+      background-color: var(--main-color);
+      color: white;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .course-info button:hover {
+      background-color: var(--hover-color);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.4);
+      padding-top: 60px;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: auto;
+      padding: 25px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .modal-content h2 {
+      font-size: 24px;
+      color: var(--text-dark);
+      margin-top: 0;
+    }
+
+    .modal-content p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .modal-content button {
+      background-color: var(--main-color);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    .modal-content button:hover {
+      background-color: var(--hover-color);
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Message pour exportation vide */
+    .empty-message {
+      font-size: 16px;
+      color: red;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img
+            src="image/27b64a1f-1d13-458c-8230-3fbaa299beae-removebg.png"
+            alt="Logo"
+            class="logo-img"
+            />
+            </a>
+          Next<span>Step</span>
+        </div>
+        <ul class="nav-links">
+          <li class="dropdown">
+            <button class="dropbtn">
+              Explore Opportunities <i class="fas fa-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#"
+                  ><i class="fas fa-lightbulb"></i> Innovative Projects</a
+                >
+              </li>
+              <!-- Icon for Innovation -->
+              <li>
+                <a href="#"
+                  ><i class="fas fa-users"></i> Collaborative Ventures</a
+                >
+              </li>
+              <!-- Icon for Collaboration -->
+              <li>
+                <a href="#"
+                  ><i class="fas fa-dollar-sign"></i> Funding Opportunities</a
+                >
+              </li>
+              <!-- Icon for Funding -->
+              <li>
+                <a href="#"><i class="fas fa-handshake"></i> Partnerships</a>
+              </li>
+              <!-- Icon for Partnerships -->
+            </ul>
+          </li>
+          <li class="dropdown">
+            <button class="dropbtn">
+              Our Courses <i class="fas fa-chevron-down"></i>
+              <!-- Changed to 'Our Courses' -->
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="coursF.html">
+                    <i class="fas fa-book"></i> Courses</a>
+                </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-rocket"></i> Entrepreneurship Basics</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-chart-line"></i> Business Strategies</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-lightbulb"></i> Innovation Workshops</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-user-tie"></i> Leadership Programs</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <button class="dropbtn">
+              Our Events <i class="fas fa-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="eventsF.php"
+                  ><i class="fas fa-calendar-alt"></i> Our Events</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <button class="dropbtn">
+              Incubator <i class="fas fa-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="incubator.html #nitro-section"><i class="fas fa-bolt"></i> Nitro Plans</a></li>
+              <li><a href="incubator.html #workspace-section"><i class="fas fa-chair"></i> Working Space</a></li>
+              <li><a href="incubator.html #workshop-section"><i class="fas fa-chalkboard-teacher"></i> Workshops</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <button class="dropbtn">
+              Startup <i class="fas fa-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="startup.html"><i class="fas fa-cogs"></i> Startup</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <button class="dropbtn">
+              Why Us <i class="fas fa-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#"><i class="fas fa-cogs"></i> How It Works</a>
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-trophy"></i> Success Stories</a>
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-tags"></i> Pricing</a>
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-question-circle"></i> FAQ</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="search-box">
+          <input type="text" placeholder="Search..." />
+          <select class="search-category">
+            <option value="project">🔍 Project</option>
+            <option value="startup">🚀 Startup</option>
+          </select>
+        </div>
+        <button class="login-btn"><i class="fas fa-user"></i> Log In</button>
+    </nav>
+  <h1>📚 Parcourir les Cours</h1>
+
+  <div class="course-container" id="courseContainer">
+    <!-- Les cartes seront injectées ici -->
+  </div>
+
+  <!-- Modal -->
+  <div id="detailsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeDetailsModal()">&times;</span>
+      <h2>Détails du Cours</h2>
+      <div id="courseDetailsContent"></div>
+      <div id="pdfExportMessage"></div>
+      <button id="startButton" onclick="startCourse()">Commencer</button>
+    </div>
+  </div>
+
+  <script>
+    const defaultCover = 'book.jpg'; // à changer si besoin
+    const courseContainer = document.getElementById("courseContainer");
+    const modal = document.getElementById("detailsModal");
+    const courseDetailsContent = document.getElementById("courseDetailsContent");
+    const pdfExportMessage = document.getElementById("pdfExportMessage");
+    const courses = JSON.parse(localStorage.getItem("courses")) || [];
+    function formatPrice(price) {
+      return price === 0 ? "Free" : $ ;{price} DT;
+    }
+    function displayCourses() {
+      courseContainer.innerHTML = '';
+      courses.forEach(course => {
+        const courseCard = document.createElement("div");
+        courseCard.className = "course-card";
+
+        const cover = course.cover?.trim() || defaultCover;
+        const prixFormatted = formatPrice(course.prix || 0);
+
+        courseCard.innerHTML = `
+          <div class="course-image" style="background-image: url('${cover}')">
+            <div class="course-info">
+              <h3>${course.nom}</h3>
+              <p>${course.description.slice(0, 100)}...</p>
+              <p><strong>Prix :</strong> ${prixFormatted}</p>
+              <button onclick="viewCourseDetails(${course.id})">Voir les Détails</button>
+            </div>
+          </div>
+        `;
+
+        courseContainer.appendChild(courseCard);
+      });
+    }
+
+    function viewCourseDetails(id) {
+      const course = courses.find(c => c.id === id);
+      if (!course) return;
+
+      const prixFormatted = formatPrice(course.prix || 0);
+
+      const detailsContent = `
+        <p><strong>Nom :</strong> ${course.nom}</p>
+        <p><strong>Description :</strong> ${course.description}</p>
+        <p><strong>Date :</strong> ${course.date}</p>
+        <p><strong>Prix :</strong> ${prixFormatted}</p>
+      `;
+
+      courseDetailsContent.innerHTML = detailsContent;
+
+      // Check if the course has PDF export available
+      if (course.pdfExport && course.pdfExport.length > 0) {
+        pdfExportMessage.innerHTML = `
+          <p><strong>Exportation PDF disponible:</strong> ${course.pdfExport.join(', ')}</p>
+        `;
+      } else {
+        pdfExportMessage.innerHTML = <p class="empty-message">Ce cours est vide.</p>;
+      }
+
+      modal.style.display = "block";
+    }
+
+    function closeDetailsModal() {
+      modal.style.display = "none";
+    }
+
+    function startCourse() {
+      window.location.href = 'courscommence.html'; // Redirige vers la page 'courscommence.html'
+      closeDetailsModal(); // Ferme le modal
+    }
+
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        closeDetailsModal();
+      }
+    };
+
+    displayCourses();
+  </script>
+</body>
+</html>
