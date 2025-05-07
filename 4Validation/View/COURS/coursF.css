@@ -1,0 +1,247 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f7f7;
+    padding: 2rem;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.content {
+    padding: 1.5rem;
+}
+
+.title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    color: #27ae60;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.description {
+    font-size: 0.875rem;
+    color: #555;
+    height: 45px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #2980b9;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #3498db;
+}
+
+.note {
+    font-size: 1.1rem;
+    color: #f1c40f;
+    margin-bottom: 1rem;
+}
+
+.note span {
+    font-size: 0.875rem;
+    color: #555;
+}
+
+.container h1 {
+    font-size: 3rem;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(to right, #ff6b6b, #5f27cd);
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Style global du formulaire de recherche et de tri */
+.formulaireTri {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.formulaireTri label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.formulaireTri input[type="text"] {
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    width: 250px;
+    min-width: 200px;
+    transition: border-color 0.3s ease;
+}
+
+.formulaireTri input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.formulaireTri select {
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    width: 200px;
+    min-width: 150px;
+    transition: border-color 0.3s ease;
+}
+
+form select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Styles pour la version mobile */
+@media screen and (max-width: 768px) {
+    form {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    form input[type="text"], form select {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    form button {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+
+/* Formulaire de tri */
+form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+form label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-right: 0.5rem;
+}
+
+form select,
+form input[type="text"] {
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    width: 250px;
+    min-width: 200px;
+    transition: border-color 0.3s ease;
+}
+
+form select:focus,
+form input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Styles pour version mobile */
+@media screen and (max-width: 768px) {
+    form {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    form select,
+    form input[type="text"],
+    form button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+

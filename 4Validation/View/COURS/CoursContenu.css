@@ -1,0 +1,64 @@
+body {
+    font-family: Arial;
+    margin: 30px;
+    background: #f4f4f4;
+}
+h2 {
+    color: #333;
+}
+form, table {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+input, select {
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.btn {
+    padding: 10px 16px;
+    border: none;
+    background: #28a745;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+}
+.btn:hover {
+    background: #218838;
+}
+.btn-secondary {
+    background: #007bff;
+}
+.btn-secondary:hover {
+    background: #0069d9;
+}
+.btn-danger {
+    background: #dc3545;
+}
+.btn-danger:hover {
+    background: #c82333;
+}
+.btn-retour {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 16px;
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+.btn-retour:hover {
+    background-color: #5a6268;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+}

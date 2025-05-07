@@ -1,0 +1,64 @@
+/* TABLE DE BASE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+/* IMAGES DANS TABLEAU */
+img {
+  max-width: 80px;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* GROUPE DE BOUTONS */
+.btn-actions a {
+  display: inline-block;
+  margin: 0 4px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* SUPPRIMER */
+.btn-delete {
+  background-color: #e74c3c;
+}
+.btn-delete:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+/* MODIFIER */
+.btn-edit {
+  background-color: #3498db;
+}
+.btn-edit:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+/* AJOUTER UNE RESSOURCE */
+.btn-ressource {
+  background-color: #27ae60;
+}
+.btn-ressource:hover {
+  background-color: #1e8449;
+  transform: scale(1.05);
+}
