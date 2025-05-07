@@ -1,0 +1,122 @@
+<!-- HTML -->
+<div id="customModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>This is a custom modal!</p>
+  </div>
+</div>
+<section class="gallery-section">
+    <div class="gallery-container">
+      <!-- Gallery Widget 1 -->
+      <div class="gallery-widget">
+        <div class="gallery-image">
+          <img src="image/Business-Meet.png" alt="Success story 1">
+        </div>
+        <div class="gallery-content">
+          <h3>Startup Success</h3>
+          <p class="gallery-intro">How Jane launched her tech company in just 3 months</p>
+          <button class="see-more" 
+                  data-title="Startup Success" 
+                  data-desc="Jane Doe transformed her small idea into a thriving tech business in just 90 days. Through our incubation program, she accessed funding, mentorship, and workspace that helped her launch successfully." 
+                  data-image="image/Business-Meet.png">
+            See more...
+          </button>
+        </div>
+      </div>
+  
+      <!-- Gallery Widget 2 -->
+      <div class="gallery-widget">
+        <div class="gallery-image">
+          <img src="image/Project-Management.jpg" alt="Success story 2">
+        </div>
+        <div class="gallery-content">
+          <h3>Project Managed</h3>
+          <p class="gallery-intro">Mark's team delivered their project 2 weeks early</p>
+          <button class="see-more"
+                  data-title="Project Managed" 
+                  data-desc="Mark Johnson and his team utilized our project management training to streamline their workflow, resulting in early delivery with 30% cost savings." 
+                  data-image="image/Project-Management.jpg">
+            See more...
+          </button>
+        </div>
+      </div>
+  
+      <!-- Gallery Widget 3 -->
+      <div class="gallery-widget">
+        <div class="gallery-image">
+          <img src="image/Business-growth.jpg" alt="Success story 3">
+        </div>
+        <div class="gallery-content">
+          <h3>Business Growth</h3>
+          <p class="gallery-intro">Sarah scaled her business to 6 figures in 1 year</p>
+          <button class="see-more"
+                  data-title="Business Growth" 
+                  data-desc="Sarah Williams applied our growth strategies to scale her boutique marketing agency from $30k to $120k in annual revenue within 12 months." 
+                  data-image="image/Business-growth.jpg">
+            See more...
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- The Popup Structure -->
+    <div class="custom-popup" id="successPopup">
+      <div class="popup-content">
+        <span class="close-popup">&times;</span>
+        <img class="popup-image" src="" alt="">
+        <h3 class="popup-title"></h3>
+        <p class="popup-text"></p>
+        <button class="btn-contact">Contact Us</button>
+      </div>
+    </div>
+  </section>
+<style>
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+</style>
+
+<script>
+const modal = document.getElementById("customModal");
+const closeBtn = document.querySelector(".close");
+
+function openModal() {
+  modal.style.display = "block";
+}
+
+function closeModal() {
+  modal.style.display = "none";
+}
+
+closeBtn.addEventListener("click", closeModal);
+window.addEventListener("click", (e) => {
+  if (e.target === modal) closeModal();
+});
+
+// Open the modal when needed
+openModal();
+</script>
