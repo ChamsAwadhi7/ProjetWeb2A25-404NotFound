@@ -1,6 +1,4 @@
-<?php
-ob_start(); 
-?>
+
 <?php
 require_once __DIR__ . '/../../../Controller/eventController.php';
 require_once __DIR__ . '/../../../Controller/rejoindreController.php';
@@ -20,6 +18,7 @@ $events = $eventC->searchAndSortEvents($searchTerm, $sortOrder);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Événements - NextStep</title>
     <link rel="stylesheet" href="styles.css" />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -34,8 +33,35 @@ $events = $eventC->searchAndSortEvents($searchTerm, $sortOrder);
       href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
     <style>
+      .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background-color: rgba(255, 255, 255, 0.1); /* semi-transparent */
+  backdrop-filter: blur(10px);               /* flou */
+  -webkit-backdrop-filter: blur(10px);       /* compatibilité Safari */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);  /* ombre douce */
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* légère bordure */
+  transition: background-color 0.3s ease;
+}
         body {
+            background-image: url(image/bgimg.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+          background-size: cover;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
@@ -44,6 +70,7 @@ $events = $eventC->searchAndSortEvents($searchTerm, $sortOrder);
         }
         
         .container {
+          
           max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
@@ -693,10 +720,27 @@ $events = $eventC->searchAndSortEvents($searchTerm, $sortOrder);
     color: #777;
     pointer-events: none;
 }
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+
+
 </style>
 <div class="container">
     <h1>Nos Événements à Venir</h1>
-    <div class="events-grid">
+    
+    <div class="events-grid" >
+      
         <?php if (empty($events)): ?>
             <div class="no-events">
                 <p>Aucun événement prévu pour le moment. Revenez plus tard!</p>
@@ -704,7 +748,7 @@ $events = $eventC->searchAndSortEvents($searchTerm, $sortOrder);
         <?php else: ?>
           <?php
               // Pagination
-              $eventsPerPage = 6;
+              $eventsPerPage = 6 ;
               $totalEvents = count($events);
               $totalPages = ceil($totalEvents / $eventsPerPage);
 
@@ -720,16 +764,16 @@ $events = $eventC->searchAndSortEvents($searchTerm, $sortOrder);
 
               <?php foreach ($paginatedEvents as $event): ?>
 
-                <div class="event-card">
+                <div class="event-card" data-aos="fade-up">
                     <?php
-                    $defaultImage = '/Web project 2025/uploads/events/default-event.jpg';
+                    $defaultImage = '/Web project 2025/EVENTS/uploads/events/default-event.jpg';
                     $imageFile = !empty($event['img_event']) ? basename($event['img_event']) : 'default-event.jpg';
 
                     // Full path to check file existence (for PHP)
-                    $fullPath = $_SERVER['DOCUMENT_ROOT'] . '/Web project 2025/View/BackOffice/uploads/events/' . $imageFile;
+                    $fullPath = $_SERVER['DOCUMENT_ROOT'] . '/Web project 2025//EVENTS/View/BackOffice/uploads/events/' . $imageFile;
 
                     // Web path used in <img src="">
-                    $webPath = '/Web project 2025/View/BackOffice/uploads/events/' . $imageFile;
+                    $webPath = '/Web project 2025//EVENTS/View/BackOffice/uploads/events/' . $imageFile;
 
                     // If file doesn't exist, fallback to default image
                     if (!file_exists($fullPath)) {
@@ -737,7 +781,7 @@ $events = $eventC->searchAndSortEvents($searchTerm, $sortOrder);
                     }
                     ?>
 
-                    <img src="<?= htmlspecialchars($webPath) ?>" alt="<?= htmlspecialchars($event['nom_event']) ?>" class="event-image">
+                    <img src="<?= htmlspecialchars($webPath) ?>" alt="<?= htmlspecialchars($event['nom_event']) ?>" class="event-image floating">
 
                     <div class="event-content">
                         <h2 class="event-title"><?= htmlentities($event['nom_event'], ENT_QUOTES, 'UTF-8') ?></h2>
@@ -755,11 +799,14 @@ $events = $eventC->searchAndSortEvents($searchTerm, $sortOrder);
     Voir Détails
 </button>
 
+
                     </div>
+                    
                 </div>
-                
+  
             <?php endforeach; ?>
         <?php endif; ?>
+       
     </div>
     <?php if ($totalPages > 1): ?>
 <div class="pagination-container">
@@ -824,18 +871,18 @@ $events = $eventC->searchAndSortEvents($searchTerm, $sortOrder);
 
     <div style="margin-bottom: 20px;">
         <label for="telnbr" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">📞 Numéro de téléphone</label>
-        <input type="text" id="telnbr" name="telnbr" placeholder="Votre numéro de téléphone" 
+        <input type="text" id="telnbr" name="telnbr" placeholder="Votre numéro de téléphone " 
                style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; transition: border 0.3s ease;">
     </div>
 
     <div style="margin-bottom: 25px;">
         <label for="nbrguest" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">👥 Nombre d'invités</label>
-        <input type="number" id="nbrguest" name="nbrguest" placeholder="Nombre d'invités (1-3)"
+        <input type="number" id="nbrguest" name="nbrguest" placeholder="Nombre d'invités (1-2)"
                style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; transition: border 0.3s ease;">
     </div>
 
     <button  type="submit" class="btn-participate" style="width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.3s ease;">
-        ✅ Valider la participation
+        ✅ Veuillez verifié vos informations
     </button>
 </form>
 
@@ -905,8 +952,8 @@ $events = $eventC->searchAndSortEvents($searchTerm, $sortOrder);
     document.getElementById("modalDescription").innerText = eventData.description;
 
     const imagePath = eventData.image && eventData.image.trim() !== ''
-        ? '/Web project 2025/View/BackOffice/' + eventData.image
-        : '/Web project 2025/View/BackOffice/uploads/events/default-event.jpg';
+        ? '/Web project 2025/EVENTS/View/BackOffice/' + eventData.image
+        : '/Web project 2025/EVENTS/View/BackOffice/uploads/events/default-event.jpg';
     document.getElementById("modalImage").src = imagePath;
    
 
@@ -927,22 +974,23 @@ function validateParticipationForm(event) {
     const numberOfGuests = parseInt(document.getElementById('nbrguest').value.trim(), 10);
 
     // Regex basique pour téléphone : commence par 0 et 9 chiffres ensuite (France)
-    const phoneRegex = /^0[1-9][0-9]{8}$/;
+    const phoneRegex = /^\d{8}$/;
+
 
     // Validation du téléphone
     if (!phoneRegex.test(phoneNumber)) {
-        alert("Veuillez entrer un numéro de téléphone valide (ex : 0612345678).");
+        alert("Veuillez entrer un numéro de téléphone valide (ex : 94452454).");
         return false;
     }
 
     // Validation du nombre d'invités
-    if (isNaN(numberOfGuests) || numberOfGuests < 1 || numberOfGuests > 3) {
-        alert("Veuillez entrer un nombre d'invités entre 1 et 3.");
+    if (isNaN(numberOfGuests) || numberOfGuests < 1 || numberOfGuests > 2) {
+        alert("Veuillez entrer un nombre d'invités entre 1 et 2.");
         return false;
     }
 
     // Si tout est valide
-    alert("Participation validée ! Merci.");
+    alert(" Maintenant vous pouvez participer, Veuillez clicker sur le boutons Participer ! Merci.");
   
 }
 
@@ -968,6 +1016,34 @@ function validateParticipationForm(event) {
             document.getElementById('eventModal').style.display = 'block';
         }
     });
+    
+    document.addEventListener("DOMContentLoaded", function () {
+      AOS.init({ duration: 1000 });
+  // Ask for permission if not already granted
+  if (Notification.permission !== "granted") {
+    Notification.requestPermission();
+  }
+  // Fetch event notifications
+  fetch("notification.php")
+    .then((response) => {
+      if (!response.ok) throw new Error("HTTP error " + response.status);
+      return response.json();
+    })
+    .then((events) => {
+      if (events.length === 0) {
+        console.log("✅ No events 3 days from now.");
+        return;
+      }
+
+      events.forEach((event) => {
+        new Notification("📅 Upcoming Event in 3 Days", {
+          body: `${event.title}\n📍 ${event.location}\n🕒 ${event.date}`,
+          icon: "image/notif.jpg",
+        });
+      });
+    })
+    .catch((err) => console.error("❌ Notification fetch error:", err));
+});
 </script>
 <footer class="footer">
       <div class="container">

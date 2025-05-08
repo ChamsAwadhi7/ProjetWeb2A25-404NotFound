@@ -139,7 +139,7 @@ public function addParticipation($eventId, $userId)
                 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 $mail->isSMTP();
-$mail->Host = 'smtp.gmail.com';  // Serveur SMTP Gmail
+$mail->Host = 'smtp.gmail.com';  
 
 $mail->SMTPAuth = true;
 $mail->Username = 'ghribimedaziz007@gmail.com';  // Ton email
@@ -148,12 +148,12 @@ $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = 587;  // Port SMTP pour Outlook (STARTTLS)
     
                 // Expéditeur et destinataire
-                $mail->setFrom('ghribimedaziz007@gmail.com', 'Equipe Organisation');
+                $mail->setFrom('ghribimedaziz007@gmail.com', 'Equipe NextStep');
                 $mail->addAddress($email, $nomUser);
     
                 // Contenu de l'email (HTML)
                 $mail->isHTML(true);
-                $mail->Subject = "Confirmation de votre participation à l'événement \"$eventName\"";
+                $mail->Subject = "Confirmation de votre participation à l'evenement \"$eventName\"";
                 $mail->Body = "
                     <div>
                         <h2>Confirmation de votre inscription</h2>
@@ -167,9 +167,7 @@ $mail->Port = 587;  // Port SMTP pour Outlook (STARTTLS)
                         <p>À très bientôt !</p>
                     </div>
                 ";
-    
                 // Envoi de l'email
-                
                     $mail->send();
                     echo 'Message has been sent';
                 } catch (Exception $e) {

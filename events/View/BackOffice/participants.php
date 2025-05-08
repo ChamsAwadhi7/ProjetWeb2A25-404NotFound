@@ -86,10 +86,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['export_pdf'])) {
             $fullName = $participant['prenom_user'] . ' ' . $participant['nom_user'];
             $dateParticipation = date('d/m/Y H:i', strtotime($participant['date_participation']));
             $statut = ucfirst($participant['statut_participation']);
+            $pdf->Cell(60, 10, mb_convert_encoding($fullName, 'ISO-8859-1', 'UTF-8'), 1, 0, 'C');
+$pdf->Cell(60, 10, mb_convert_encoding($dateParticipation, 'ISO-8859-1', 'UTF-8'), 1, 0, 'C');
+$pdf->Cell(60, 10, mb_convert_encoding($statut, 'ISO-8859-1', 'UTF-8'), 1, 1, 'C');
 
-            $pdf->Cell(60, 10, utf8_decode($fullName), 1, 0, 'C');
-            $pdf->Cell(60, 10, utf8_decode($dateParticipation), 1, 0, 'C');
-            $pdf->Cell(60, 10, utf8_decode($statut), 1, 1, 'C');
         }
 
         $pdf->Ln(15); // Espace entre événements

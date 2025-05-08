@@ -2,7 +2,7 @@
 session_start();
 
 // Simuler un utilisateur connecté avec ID fixe (ex: 1)
-$_SESSION['user_id'] = 1;
+$_SESSION['user_id'] = 2;
 
 require_once __DIR__ . '/../../../Controller/eventController.php';
 require_once __DIR__ . '/../../../Controller/rejoindreController.php';
