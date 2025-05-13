@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI/UX</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <div class="container">
+      <aside>
+         <div class="top">
+           <div class="logo">
+             <h2>C <span class="danger">NextStep</span> </h2>
+           </div>
+           <div class="close" id="close_btn">
+            <span class="material-symbols-sharp">close</span>
+           </div>
+         </div>
+
+         <div class="sidebar">
+            <a href="#">
+              <span class="material-symbols-sharp">grid_view</span>
+              <h3>Dashboard</h3>
+           </a>
+           <a href="#" class="active" id="startups-btn">
+              <span class="material-symbols-sharp">person_outline</span>
+              <h3>Startups</h3>
+           </a>
+           <a href="#" id="incubators-btn">
+            <span class="material-symbols-sharp">business</span>
+            <h3>Incubators</h3>
+           </a>
+           <a href="#">
+              <span class="material-symbols-sharp">settings</span>
+              <h3>Settings</h3>
+           </a>
+           <a href="#">
+              <span class="material-symbols-sharp">logout</span>
+              <h3>Logout</h3>
+           </a>
+         </div>
+      </aside>
+
+      <main id="main-content">
+        <div class="startup-content">
+           <h1>Dashboard</h1>
+           <div class="date">
+             <input type="date">
+           </div>
+           <div class="insights">
+             <div class="sales">
+               <span class="material-symbols-sharp">trending_up</span>
+               <div class="middle">
+                 <div class="left">
+                   <h3>Total Sales</h3>
+                   <h1>$25,024</h1>
+                 </div>
+                  <div class="progress">
+                      <svg>
+                         <circle r="30" cy="40" cx="40"></circle>
+                      </svg>
+                      <div class="number"><p>80%</p></div>
+                  </div>
+               </div>
+               <small>Last 24 Hours</small>
+            </div>
+        </div>
+        </div>
+
+        <center>
+        <div class="incubator-content" style="display: none;">
+          <h1>Incubators</h1>
+          <br><br>
+          <div class="actions">
+            <button id="add-btn">
+                <span class="material-symbols-sharp">add_circle</span> Add Incubator
+            </button>
+            <button id="modify-btn">
+                <span class="material-symbols-sharp">edit</span> Modify Incubator
+            </button>
+            <button id="delete-btn">
+                <span class="material-symbols-sharp">delete</span> Delete Incubator
+            </button>
+            
+        </div>
+        </center>
+          
+          <div id="add-modal" class="modal">
+            <div class="modal-content">
+              
+              <span id="close-modal" class="close">&times;</span>
+              <center>
+                <h2>Select What to Add</h2>
+              <button class="choice-btn" id="workshop-btn">Workshop</button>
+              <button class="choice-btn" id="nitro-btn">Nitro</button>
+              <button class="choice-btn" id="workspace-btn">WorkingSpace</button>
+            </center>
+            </div>
+          </div>
+
+          <div id="workshop-form" class="form" style="display: none;">
+            <h3>Workshop Details</h3>
+            <label for="workshop-name">Name:</label>
+            <input type="text" id="workshop-name" placeholder="Workshop Name">
+            <label for="workshop-date">Date:</label>
+            <input type="date" id="workshop-date">
+            <label for="workshop-place">Place:</label>
+            <input type="text" id="workshop-place" placeholder="Workshop Place">
+            <label for="workshop-subject">Subject:</label>
+            <input type="text" id="workshop-subject" placeholder="Workshop Subject">
+            <label for="workshop-hoster">Hoster:</label>
+            <input type="text" id="workshop-hoster" placeholder="Workshop Hoster">
+            <button id="submit-workshop">Submit</button>
+          </div>
+
+          <div id="nitro-form" class="form" style="display: none;">
+            <h3>Nitro Details</h3>
+            
+            <label for="nitro-name">Name:</label>
+            <select id="nitro-name">
+              <option value="beginner" data-price="9.99" data-period="1 month">Beginner</option>
+              <option value="silver" data-price="19.99" data-period="2 months">Silver</option>
+              <option value="gold" data-price="49.99" data-period="6 months">Gold</option>
+            </select>
+          
+            <label for="nitro-price">Price:</label>
+            <input type="number" id="nitro-price" placeholder="Price" readonly>
+          
+            <label for="nitro-period">Period:</label>
+            <input type="text" id="nitro-period" placeholder="Period" readonly>
+          
+            <button id="submit-nitro">Submit</button>
+          </div>
+          
+
+          <div id="workspace-form" class="form" style="display: none;">
+            <h3>WorkingSpace Details</h3>
+            <label for="workspace-name">Name:</label>
+            <input type="text" id="workspace-name" placeholder="WorkingSpace Name">
+            <label for="workspace-location">Location:</label>
+            <input type="text" id="workspace-location" placeholder="Location">
+            <label for="workspace-surface">Surface:</label>
+            <input type="number" id="workspace-surface" placeholder="Surface (in sq.m.)">
+            <label for="workspace-price">Price:</label>
+            <input type="number" id="workspace-price" placeholder="Price">
+            <label for="workspace-capacity">Capacity:</label>
+            <input type="number" id="workspace-capacity" placeholder="Capacity (people)">
+            <button id="submit-workspace">Submit</button>
+          </div>
+        </center>
+
+          
+      </main>
+
+    <div class="right">
+      <div class="top">
+        <button id="menu_bar">
+          <span class="material-symbols-sharp">menu</span>
+        </button>
+
+        <div class="theme-toggler">
+          <span class="material-symbols-sharp active">light_mode</span>
+          <span class="material-symbols-sharp">dark_mode</span>
+        </div>
+
+        <div class="profile">
+           <div class="info">
+               <p><b>NextStep</b></p>
+               <p>Admin</p>
+           </div>
+           <div class="profile-photo">
+             <img src="./images/profile-1.jpg" alt=""/>
+           </div>
+        </div>
+      </div>
+    </div>
+
+   <script src="script.js"></script>
+</body>
+</html>
