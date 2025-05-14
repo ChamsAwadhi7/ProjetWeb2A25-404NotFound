@@ -7,7 +7,7 @@ require_once '../../Model/Cours.php';
 
 session_start();
 if (!isset($_SESSION['utilisateur'])) {
-    header('Location: login.php');
+    header('Location: login_register.php');
     exit;
 }
 $userId = $_SESSION['utilisateur']['id'];
@@ -178,7 +178,7 @@ $id_user = $_SESSION["utilisateur"]["id"];
     $stmt->execute([$id_user, $id_cours]);
     $dejaNote = $stmt->fetchColumn();
     if ($dejaNote > 0) {
-        echo "⚠ Vous avez déjà noté ce cours.";
+        //echo "⚠ Vous avez déjà noté ce cours.";
     } else {
 
     try {
@@ -188,7 +188,7 @@ $id_user = $_SESSION["utilisateur"]["id"];
             ':id_cours' => $id_cours,
             ':note' => $note
         ]);
-        echo "✅ Note ajoutée avec succès.";
+        //echo "✅ Note ajoutée avec succès.";
         // Mettre à jour la moyenne du cours
         
         $coursController = new CoursController($pdo);
@@ -274,17 +274,17 @@ $id_user = $_SESSION["utilisateur"]["id"];
             <?php endforeach; ?>
         </div>
     <?php else: ?>
-        <p style="color:orange;">⚠ Ce cours ne contient actuellement aucun contenu.</p>
+        <p style="color:orange;">⚠ This course currently contains no content..</p>
     <?php endif; ?>
 <?php elseif ($userId): ?>
-    <p style="color:red;">⛔ Vous devez acheter ce cours pour accéder au contenu.</p>
+    <p style="color:red;">⛔ You need to purchase this course to access the content..</p>
 <?php endif; ?>
 
 
         
          <!-- Formulaire pour ajouter un commentaire -->
         <div id="comment-react"></div>
-            <h3>Ajouter un commentaire :</h3>
+            <h3>Add a comment :</h3>
             <form method="post" class="comment-form" id="commentForm">
             <input type="hidden" name="pseudo" value="<?= htmlspecialchars($_SESSION['utilisateur']['id']) ?>">
                 <textarea name="contenu" id="contenu" rows="4" placeholder="Votre commentaire"></textarea>
@@ -306,11 +306,11 @@ $id_user = $_SESSION["utilisateur"]["id"];
             <!-- Lien pour supprimer un commentaire -->
             <a href="?id=<?= $id ?>&delete_comment=<?= $comment['id'] ?>" 
                onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');" 
-               style="color: red; font-size: 0.9rem;">Supprimer</a>
+               style="color: red; font-size: 0.9rem;">Delete</a>
 
             <!-- Lien pour éditer un commentaire -->
             <a href="?id=<?= $id ?>&edit_comment=<?= $comment['id'] ?>" 
-               style="color: blue; font-size: 0.9rem;">Éditer</a>
+               style="color: blue; font-size: 0.9rem;">Edit</a>
         <?php endif; ?>
 
         <div id="comment-react-app-<?= $comment['id'] ?>" class="comment-react"></div>
@@ -326,7 +326,7 @@ $id_user = $_SESSION["utilisateur"]["id"];
 <?php endforeach; ?>
 
 <?php else: ?>
-    <p>Aucun commentaire pour ce cours.</p>
+    <p>No comments for this course.</p>
 <?php endif; ?>
 
         </div>
@@ -349,7 +349,7 @@ function commencerCours(coursId, prixCours) {
     
     // Vérifier si l'utilisateur est connecté
     if (!userId) {
-        alert("❌ Utilisateur non connecté.");
+        alert("❌ User not connected.");
         return;
     }
 
@@ -358,7 +358,7 @@ function commencerCours(coursId, prixCours) {
         .then(res => res.json())
         .then(data => {
             if (data.dejaAchete) {
-                alert("✅ Vous avez déjà acheté ce cours !");
+                alert("✅ You already bought this course!");
                 // Rediriger vers la page de cours
                 window.location.href = `coursF_detail.php?id=${coursId}&user=${userId}`;
             } else {
@@ -376,8 +376,8 @@ function commencerCours(coursId, prixCours) {
                 .then(data => {
                     if (data.status === 'success') {
                         alert(
-                            "✅ Achat réussi !\n" +
-                            "Solde actuel : " + data.soldeActuel + " dt\n" +
+                            "✅ Purchase successful !\n" +
+                            "Current balance : " + data.soldeActuel + " dt\n" +
                             "Nouveau solde : " + data.nouveauSolde + " "
                             
                         );

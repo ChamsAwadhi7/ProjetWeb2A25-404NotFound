@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Incubator</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+  </head>
+  <body>
+    <nav class="navbar">
+        <div class="logo">
+          <img
+            src="image/27b64a1f-1d13-458c-8230-3fbaa299beae-removebg.png"
+            alt="Logo"
+            class="logo-img"
+          />
+          Next<span>Step</span>
+        </div>
+  
+        <ul class="nav-links">
+          <li class="dropdown">
+            <button class="dropbtn">
+              Incubator <i class="fas fa-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="incubator.html#nitro-section"><i class="fas fa-bolt"></i> Nitro Plans</a></li>
+              <li><a href="incubator.html#workspace-section"><i class="fas fa-chair"></i> Working Space</a></li>
+              <li><a href="incubator.html#workshop-section"><i class="fas fa-chalkboard-teacher"></i> Workshops</a></li>
+            </ul>
+          </li>
+        <li class="dropdown">
+          <button class="dropbtn">
+              Explore Opportunities <i class="fas fa-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#"
+                  ><i class="fas fa-lightbulb"></i> Innovative Projects</a
+                >
+              </li>
+              <!-- Icon for Innovation -->
+              <li>
+                <a href="#"
+                  ><i class="fas fa-users"></i> Collaborative Ventures</a
+                >
+              </li>
+              <!-- Icon for Collaboration -->
+              <li>
+                <a href="#"
+                  ><i class="fas fa-dollar-sign"></i> Funding Opportunities</a
+                >
+              </li>
+              <!-- Icon for Funding -->
+              <li>
+                <a href="#"><i class="fas fa-handshake"></i> Partnerships</a>
+              </li>
+              <!-- Icon for Partnerships -->
+            </ul>
+          </li>
+          <li class="dropdown">
+            <button class="dropbtn">
+              Our Courses <i class="fas fa-chevron-down"></i>
+              <!-- Changed to 'Our Courses' -->
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#"
+                  ><i class="fas fa-rocket"></i> Entrepreneurship Basics</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-chart-line"></i> Business Strategies</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-lightbulb"></i> Innovation Workshops</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-user-tie"></i> Leadership Programs</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <button class="dropbtn">
+              Why Us <i class="fas fa-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#"><i class="fas fa-cogs"></i> How It Works</a>
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-trophy"></i> Success Stories</a>
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-tags"></i> Pricing</a>
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-question-circle"></i> FAQ</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="search-box">
+          <input type="text" placeholder="Search..." />
+          <select class="search-category">
+            <option value="project">🔍 Project</option>
+            <option value="startup">🚀 Startup</option>
+          </select>
+        </div>
+        <button class="login-btn"><i class="fas fa-user"></i> Log In</button>
+        <div class="container" id="container" style="display: none;">
+          <div class="form-container sign-in-container">
+              <form action="#">
+                  <h1>Sign in</h1>
+                  <span>or use your account</span>
+                  <input type="email" placeholder="Email" required />
+                  <input type="password" placeholder="Password" required />
+                  <a href="#">Forgot your password?</a>
+                  <button>Sign In</button>
+              </form>
+          </div>
+          <div class="overlay-container">
+              <div class="overlay">
+                  <div class="overlay-panel overlay-left">
+                      <h1>Back to Building the Future!</h1>
+                      <p>Your next big idea starts here. Log in to stay connected, collaborate, and turn innovation into impact!</p>
+                      <button class="ghost" id="signIn">Sign In</button>
+                  </div>
+                  <div class="overlay-panel overlay-right">
+                      <h1>Join the Movement of Innovators!</h1>
+                      <p>The future is shaped by those who dare to create. Sign up now and be part of a community that turns ideas into reality!</p>
+                      <button class="ghost" id="signUp">Sign Up</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </nav>
+    <div class="return-home">
+        <a href="index.html">
+          <button class="btn-return-home">Return to Home</button>
+        </a>
+      </div>
+    
+    <!-- Nitro Section -->
+    <h2>NITRO</h2>
+    <p>HERE YOU CAN BOOST YOUR STARTUPS</p>
+    <section id="nitro-section" class="py-12 px-4 bg-gray-100">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Nitro Pricing Plans</h2>
+      <div class="flex flex-wrap justify-center gap-8">
+        <center>
+          <!-- Start Plan -->
+          <div class="plan start">
+            <div class="icon">
+              <img src="image/beginner.png" alt="beginner" width="30">
+            </div>
+            <div class="title">BEGINNER</div>
+            <ul class="features">
+              <li>15 Users</li>
+              <li>20 GB</li>
+              <li>4 Domains</li>
+              <li>Free Update</li>
+            </ul>
+            <div class="pricing">9.99$<sup></sup></div>
+          </div>
+  
+          <!-- Advanced Plan -->
+          <div class="plan advanced">
+            <div class="icon">
+              <img src="image/medium.png" alt="Advanced Icon" width="30">
+            </div>
+            <div class="title">SILVER</div>
+            <ul class="features">
+              <li>30 Users</li>
+              <li>50 GB</li>
+              <li>8 Domains</li>
+              <li>Free Update</li>
+            </ul>
+            <div class="pricing">19.99$<sup></sup></div>
+          </div>
+  
+          <!-- Premium Plan -->
+          <div class="plan premium">
+            <div class="icon">
+              <img src="image/last.png" alt="Premium Icon" width="30">
+            </div>
+            <div class="title">GOLD</div>
+            <ul class="features">
+              <li>45 Users</li>
+              <li>150 GB</li>
+              <li>10 Domains</li>
+              <li>Free Update</li>
+            </ul>
+            <div class="pricing">49.99$<sup></sup></div>
+          </div>
+  
+        </center>
+      </div>
+    </section>
+
+    <!-- Working Space Section -->
+    <section id="workspace-section" class="py-12 px-4 bg-white">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Working Space</h2>
+      <p class="text-center max-w-2xl mx-auto mb-8 text-gray-600">
+        Access collaborative office environments equipped with high-speed internet, meeting rooms, and creative zones to boost your productivity and connect with fellow innovators.
+      </p>
+  
+      <div class="overflow-x-auto max-w-5xl mx-auto">
+        <table class="min-w-full border border-gray-200 shadow-md rounded-lg overflow-hidden">
+          <thead class="bg-gray-100 text-gray-700 text-left">
+            <tr>
+              <th class="py-3 px-6">Name</th>
+              <th class="py-3 px-6">Location</th>
+              <th class="py-3 px-6">Surface (sq.m)</th>
+              <th class="py-3 px-6">Price ($)</th>
+              <th class="py-3 px-6">Capacity</th>
+              <th class="py-3 px-6 text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-t">
+              <td class="py-3 px-6">Innovator Hub</td>
+              <td class="py-3 px-6">Downtown</td>
+              <td class="py-3 px-6">120</td>
+              <td class="py-3 px-6">300</td>
+              <td class="py-3 px-6">25</td>
+              <td class="py-3 px-6 text-center">
+                <button class="rent-btn">Rent</button>
+              </td>
+            </tr>
+            <tr class="border-t">
+              <td class="py-3 px-6">Creative Loft</td>
+              <td class="py-3 px-6">Midtown</td>
+              <td class="py-3 px-6">80</td>
+              <td class="py-3 px-6">200</td>
+              <td class="py-3 px-6">15</td>
+              <td class="py-3 px-6 text-center">
+                <button class="rent-btn">Rent</button>
+              </td>
+            </tr>
+            <tr class="border-t">
+              <td class="py-3 px-6">Tech Garage</td>
+              <td class="py-3 px-6">West Side</td>
+              <td class="py-3 px-6">150</td>
+              <td class="py-3 px-6">450</td>
+              <td class="py-3 px-6">30</td>
+              <td class="py-3 px-6 text-center">
+                <button class="rent-btn">Rent</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Workshop Section -->
+    <section id="workshop-section" class="py-12 px-4 bg-gray-50">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Workshop Details</h2>
+  
+      <div class="overflow-x-auto max-w-5xl mx-auto">
+        <table class="min-w-full border border-gray-200 shadow-md rounded-lg overflow-hidden">
+          <thead class="bg-gray-100 text-gray-700 text-left">
+            <tr>
+              <th class="py-3 px-6">Name</th>
+              <th class="py-3 px-6">Date</th>
+              <th class="py-3 px-6">Place</th>
+              <th class="py-3 px-6">Subject</th>
+              <th class="py-3 px-6">Hoster</th>
+              <th class="py-3 px-6 text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-t">
+              <td class="py-3 px-6">Startup Essentials</td>
+              <td class="py-3 px-6">2025-05-12</td>
+              <td class="py-3 px-6">Main Auditorium</td>
+              <td class="py-3 px-6">Fundraising 101</td>
+              <td class="py-3 px-6">Jane Smith</td>
+              <td class="py-3 px-6 text-center">
+                <button class="participate-btn">Participate</button>
+              </td>
+            </tr>
+            <tr class="border-t">
+              <td class="py-3 px-6">Tech Talks</td>
+              <td class="py-3 px-6">2025-06-15</td>
+              <td class="py-3 px-6">Room B</td>
+              <td class="py-3 px-6">AI in Business</td>
+              <td class="py-3 px-6">John Doe</td>
+              <td class="py-3 px-6 text-center">
+                <button class="participate-btn">Participate</button>
+              </td>
+            </tr>
+            <tr class="border-t">
+              <td class="py-3 px-6">Innovation Workshop</td>
+              <td class="py-3 px-6">2025-07-20</td>
+              <td class="py-3 px-6">Conference Hall</td>
+              <td class="py-3 px-6">New Trends in Tech</td>
+              <td class="py-3 px-6">Sarah Lee</td>
+              <td class="py-3 px-6 text-center">
+                <button class="participate-btn">Participate</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </body>
+</html>

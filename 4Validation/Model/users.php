@@ -34,6 +34,7 @@ class User {
     public function getPrénom(): ?string {
         return $this->prénom;
     }
+   
 
     public function getEmail(): ?string {
         return $this->email;

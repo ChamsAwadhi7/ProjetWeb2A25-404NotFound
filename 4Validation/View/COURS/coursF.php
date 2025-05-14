@@ -4,11 +4,11 @@ require_once '../../config.php';
 
 session_start();
 if (!isset($_SESSION['utilisateur'])) {
-    header('Location: ../login.php');
+    header('Location: ../login_register.php');
     exit;
 }
 // Exemple : afficher le nom de l'utilisateur connecté
-echo "Bienvenue, " . htmlspecialchars($_SESSION['utilisateur']['nom']) . "!";
+//echo "Bienvenue, " . htmlspecialchars($_SESSION['utilisateur']['nom']) . "!";
 
 
 
@@ -57,61 +57,75 @@ if ($searchTerm !== '') {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cours disponibles</title>
+    <title>NextStep | Courses</title>
     <link rel="stylesheet" href="coursF.css" />
     <link rel="stylesheet" href="front.css" />
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body>
- <header> <!-- Navbar -->
- <nav class="navbar">
+ <header>  <!-- Navbar -->
+    <nav class="navbar">
       <div class="logo">
+      <a href="http://localhost/4Validation/View/index.php" style="text-decoration: none; color: inherit;">
         <img
           src="image/27b64a1f-1d13-458c-8230-3fbaa299beae-removebg.png"
           alt="Logo"
           class="logo-img"
         />
+        </a>
         Next<span>Step</span>
       </div>
       <ul class="nav-links">
         <li class="dropdown">
           <button class="dropbtn">
-            Explore Opportunities <i class="fas fa-chevron-down"></i>
+            HOME <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="dropdown-menu">
+          <li>
+              <a href="http://localhost/4Validation/View/index.php#"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-question-circle"></i> Why Us</a
+              >
+            </li>
+
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <button class="dropbtn">
+            Startup <i class="fas fa-chevron-down"></i>
           </button>
           <ul class="dropdown-menu">
             <li>
-              <a href="#"
-                ><i class="fas fa-lightbulb"></i> Innovative Projects</a
-              >
+              <a href="http://localhost/4Validation/View/STARTUP/FrontOffice/startup.php"><i class="fas fa-lightbulb"></i>Startup</a>
             </li>
-            <!-- Icon for Innovation -->
-            <li>
-              <a href="#"
-                ><i class="fas fa-users"></i> Collaborative Ventures</a
-              >
-            </li>
-            <!-- Icon for Collaboration -->
-            <li>
-              <a href="#"
-                ><i class="fas fa-dollar-sign"></i> Funding Opportunities</a
-              >
-            </li>
-            <!-- Icon for Funding -->
-            <li>
-              <a href="#"><i class="fas fa-handshake"></i> Partnerships</a>
-            </li>
-            <!-- Icon for Partnerships -->
           </ul>
         </li>
+        <li class="dropdown">
+                <button class="dropbtn">
+                  Incubator <i class="fas fa-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="http://localhost/4Validation/View/STARTUP/FrontOffice//incubator.php#nitro-section"><i class="fas fa-bolt"></i> Nitro Plans</a></li>
+                  <li><a href="http://localhost/4Validation/View/STARTUP/FrontOffice//incubator.php#workspace-section"><i class="fas fa-chair"></i> Working Space</a></li>
+                  <li><a href="http://localhost/4Validation/View/STARTUP/FrontOffice//incubator.php#workshop-section"><i class="fas fa-chalkboard-teacher"></i> Workshops</a></li>
+                </ul>
+              </li>
+
         <li class="dropdown">
           <button class="dropbtn">
             Our Courses <i class="fas fa-chevron-down"></i>
             <!-- Changed to 'Our Courses' -->
           </button>
           <ul class="dropdown-menu">
+          
             <li>
-              <a href="COURS/coursF.php">
+              <a href="http://localhost/4Validation/View/COURS/coursF.php">
               <i class="fas fa-book"></i> Courses</a>
           </li>
             <li>
@@ -119,11 +133,7 @@ if ($searchTerm !== '') {
                 ><i class="fas fa-rocket"></i> Entrepreneurship Basics</a
               >
             </li>
-            <li>
-              <a href="#"
-                ><i class="fas fa-chart-line"></i> Business Strategies</a
-              >
-            </li>
+            
             <li>
               <a href="#"
                 ><i class="fas fa-lightbulb"></i> Innovation Workshops</a
@@ -142,61 +152,45 @@ if ($searchTerm !== '') {
           </button>
           <ul class="dropdown-menu">
             <li>
-              <a href="EVENT/FrontOffice/View/eventsF.php"
-                ><i class="fas fa-calendar-alt"></i> Our Events</a
+              <a href="http://localhost/4Validation/View/EVENT/FrontOffice/View/eventsF.php"
+                ><i class="fas fa-bullseye"></i> Our Events</a
               >
             </li>
           </ul>
         </li>
+
         <li class="dropdown">
           <button class="dropbtn">
-            Incubator <i class="fas fa-chevron-down"></i>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a href="incubator.html #nitro-section"><i class="fas fa-bolt"></i> Nitro Plans</a></li>
-            <li><a href="incubator.html #workspace-section"><i class="fas fa-chair"></i> Working Space</a></li>
-            <li><a href="incubator.html #workshop-section"><i class="fas fa-chalkboard-teacher"></i> Workshops</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <button class="dropbtn">
-            Startup <i class="fas fa-chevron-down"></i>
+             Formation<i class="fas fa-chevron-down"></i>
           </button>
           <ul class="dropdown-menu">
             <li>
-              <a href="startup.html"><i class="fas fa-cogs"></i> Startup</a>
+              <a href="http://localhost/4Validation/View/Formation/FrontOffice/Formations2.php"><i class="fas fa-chart-line"></i>Formation</a>
+            </li>
+            <li>
+              <a href="http://localhost/4Validation/View/Formation/FrontOffice/Formations2.php"
+                ><i class="fas fa-calendar-check"></i> calendar</a
+              >
             </li>
           </ul>
         </li>
-        <li class="dropdown">
-          <button class="dropbtn">
-            Why Us <i class="fas fa-chevron-down"></i>
-          </button>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#"><i class="fas fa-cogs"></i> How It Works</a>
-            </li>
-            <li>
-              <a href="#"><i class="fas fa-trophy"></i> Success Stories</a>
-            </li>
-            <li>
-              <a href="#"><i class="fas fa-tags"></i> Pricing</a>
-            </li>
-            <li>
-              <a href="#"><i class="fas fa-question-circle"></i> FAQ</a>
-            </li>
-          </ul>
-        </li>
+        
+        
       </ul>
       <div class="search-box">
-        <input type="text" placeholder="Search..." />
-        <select class="search-category">
-          <option value="project">🔍 Project</option>
-          <option value="startup">🚀 Startup</option>
-        </select>
-      </div>
-      <button class="login-btn"><i class="fas fa-user"></i> Log In</button>
-      <div class="containerr" id="containerr" style="display: none;">
+            <input type="text" placeholder="Search..." />
+            <select class="search-category">
+                <option value="project">🔍 Project</option>
+                <option value="startup">🚀 Startup</option>
+            </select>
+        </div>
+        <hr><hr><hr><hr>
+        <a href="http://localhost/4Validation/View/profile.php" class="profile-button" title="Mon profil">
+         <i class="fas fa-user"></i>
+        </a>
+
+        <a href="logout.php"><button class="login-btn"><i class=""></i> ⏻ logout</button></a>
+<div class="containerr" id="containerr" style="display: none;">
         <div class="form-container sign-in-container">
             <form action="#">
                 <h1>Sign in</h1>
@@ -223,18 +217,47 @@ if ($searchTerm !== '') {
         </div>
       </div>
     </nav>
+    <section class="coursV" id="coursV">
+      <video autoplay muted loop class="background-video">
+        <source src="image/video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <br><br><br><br>
+      <h1>Catalogue des Cours</h1>
+      </section>
+
+      <style>
+        .coursV {
+  position: relative;
+  width: 104%;
+  height: 50vh; /* ou une hauteur fixe comme 500px */
+  overflow: hidden;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* remplit la section sans déformation */
+  z-index: -1;
+}
+.coursV h1 {
+  font-size: 3rem;
+  color: white;
+  z-index: 1;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius
+      </style>
+
 </header>
-    
 
-
-    
+  
     <!-- Section Cours -->
     <section class="Cours cours-page">
         <div class="container">
-            <br><br>
-              <h1>Catalogue des Cours</h1>
-            <br><br>
-
             <!-- Formulaire de tri -->
 <form method="GET" action="" class="formulaireTri">
     <label for="sort">Trier par :</label>
@@ -256,12 +279,17 @@ if ($searchTerm !== '') {
     gap: 2rem;
     margin-bottom: 3rem;
     flex-wrap: wrap;
+   
+    width: 101%;
 }
 
 .formulaireTri label {
     font-size: 1.2rem;
     font-weight: 600;
     color: #333;
+    weight: 800;
+    margin-left: 3rem;
+    
 }
 
 .formulaireTri input[type="text"] {

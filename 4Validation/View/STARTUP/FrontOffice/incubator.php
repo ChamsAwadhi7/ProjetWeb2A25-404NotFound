@@ -260,69 +260,73 @@ if ($sort === 'asc') {
   <!-- Navigation and other sections remain the same -->
   <nav class="navbar">
       <div class="logo">
+      <a href="http://localhost/4Validation/View/index.php" style="text-decoration: none; color: inherit;">
         <img
           src="image/27b64a1f-1d13-458c-8230-3fbaa299beae-removebg.png"
           alt="Logo"
           class="logo-img"
         />
+        </a>
         Next<span>Step</span>
       </div>
       <ul class="nav-links">
         <li class="dropdown">
           <button class="dropbtn">
-            Incubator <i class="fas fa-chevron-down"></i>
+            HOME <i class="fas fa-chevron-down"></i>
           </button>
           <ul class="dropdown-menu">
-            <li><a href="incubator.php#nitro-section"><i class="fas fa-bolt"></i> Nitro Plans</a></li>
-            <li><a href="incubator.php#workspace-section"><i class="fas fa-chair"></i> Working Space</a></li>
-            <li><a href="incubator.php#workshop-section"><i class="fas fa-chalkboard-teacher"></i> Workshops</a></li>
+          <li>
+              <a href="http://localhost/4Validation/View/index.php#"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-question-circle"></i> Why Us</a
+              >
+            </li>
+
           </ul>
         </li>
-      <li class="dropdown">
-        <button class="dropbtn">
-            Explore Opportunities <i class="fas fa-chevron-down"></i>
+
+        <li class="dropdown">
+          <button class="dropbtn">
+            Startup <i class="fas fa-chevron-down"></i>
           </button>
           <ul class="dropdown-menu">
             <li>
-              <a href="#"
-                ><i class="fas fa-lightbulb"></i> Innovative Projects</a
-              >
+              <a href="http://localhost/4Validation/View/STARTUP/FrontOffice/startup.php"><i class="fas fa-lightbulb"></i>Startup</a>
             </li>
-            <!-- Icon for Innovation -->
-            <li>
-              <a href="#"
-                ><i class="fas fa-users"></i> Collaborative Ventures</a
-              >
-            </li>
-            <!-- Icon for Collaboration -->
-            <li>
-              <a href="#"
-                ><i class="fas fa-dollar-sign"></i> Funding Opportunities</a
-              >
-            </li>
-            <!-- Icon for Funding -->
-            <li>
-              <a href="#"><i class="fas fa-handshake"></i> Partnerships</a>
-            </li>
-            <!-- Icon for Partnerships -->
           </ul>
         </li>
+        <li class="dropdown">
+                <button class="dropbtn">
+                  Incubator <i class="fas fa-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="http://localhost/4Validation/View/STARTUP/FrontOffice//incubator.php#nitro-section"><i class="fas fa-bolt"></i> Nitro Plans</a></li>
+                  <li><a href="http://localhost/4Validation/View/STARTUP/FrontOffice//incubator.php#workspace-section"><i class="fas fa-chair"></i> Working Space</a></li>
+                  <li><a href="http://localhost/4Validation/View/STARTUP/FrontOffice//incubator.php#workshop-section"><i class="fas fa-chalkboard-teacher"></i> Workshops</a></li>
+                </ul>
+              </li>
+
         <li class="dropdown">
           <button class="dropbtn">
             Our Courses <i class="fas fa-chevron-down"></i>
             <!-- Changed to 'Our Courses' -->
           </button>
           <ul class="dropdown-menu">
+          
+            <li>
+              <a href="http://localhost/4Validation/View/COURS/coursF.php">
+              <i class="fas fa-book"></i> Courses</a>
+          </li>
             <li>
               <a href="#"
                 ><i class="fas fa-rocket"></i> Entrepreneurship Basics</a
               >
             </li>
-            <li>
-              <a href="#"
-                ><i class="fas fa-chart-line"></i> Business Strategies</a
-              >
-            </li>
+            
             <li>
               <a href="#"
                 ><i class="fas fa-lightbulb"></i> Innovation Workshops</a
@@ -337,45 +341,49 @@ if ($sort === 'asc') {
         </li>
         <li class="dropdown">
           <button class="dropbtn">
-            Why Us <i class="fas fa-chevron-down"></i>
+            Our Events <i class="fas fa-chevron-down"></i>
           </button>
           <ul class="dropdown-menu">
             <li>
-              <a href="#"><i class="fas fa-cogs"></i> How It Works</a>
+              <a href="http://localhost/4Validation/View/EVENT/FrontOffice/View/eventsF.php"
+                ><i class="fas fa-bullseye"></i> Our Events</a
+              >
             </li>
-            <li>
-              <a href="#"><i class="fas fa-trophy"></i> Success Stories</a>
-            </li>
-            <li>
-              <a href="#"><i class="fas fa-tags"></i> Pricing</a>
-            </li>
-            <li>
-              <a href="#"><i class="fas fa-question-circle"></i> FAQ</a>
-            </li>
-            
           </ul>
         </li>
+
         <li class="dropdown">
           <button class="dropbtn">
-            Startup <i class="fas fa-chevron-down"></i>
+             Formation<i class="fas fa-chevron-down"></i>
           </button>
           <ul class="dropdown-menu">
             <li>
-              <a href="startup.php"><i class="fas fa-cogs"></i> Startup</a>
+              <a href="http://localhost/4Validation/View/Formation/FrontOffice/Formations2.php"><i class="fas fa-chart-line"></i>Formation</a>
             </li>
-            
+            <li>
+              <a href="http://localhost/4Validation/View/Formation/FrontOffice/Formations2.php"
+                ><i class="fas fa-calendar-check"></i> calendar</a
+              >
+            </li>
           </ul>
         </li>
+        
+        
       </ul>
       <div class="search-box">
-        <input type="text" placeholder="Search..." />
-        <select class="search-category">
-          <option value="project">🔍 Project</option>
-          <option value="startup">🚀 Startup</option>
-        </select>
-      </div>
-      <button class="login-btn"><i class="fas fa-user"></i> Log In</button>
-      <div class="container" id="container" style="display: none;">
+            <input type="text" placeholder="Search..." />
+            <select class="search-category">
+                <option value="project">🔍 Project</option>
+                <option value="startup">🚀 Startup</option>
+            </select>
+        </div>
+        <hr><hr><hr><hr>
+        <a href="http://localhost/4Validation/View/profile.php" class="profile-button" title="Mon profil">
+         <i class="fas fa-user"></i>
+        </a>
+
+        <a href="logout.php"><button class="login-btn"><i class=""></i> ⏻ logout</button></a>
+<div class="containerr" id="containerr" style="display: none;">
         <div class="form-container sign-in-container">
             <form action="#">
                 <h1>Sign in</h1>
@@ -539,7 +547,24 @@ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Adds depth */ " data-id="<?= $pla
               <td class="py-3 px-6"><?= htmlspecialchars($workspace['capacite_workingspace']) ?></td>
               <td class="py-3 px-6 text-center">
                 <button class="rent-btn">Rent</button>
+                <a href="https://www.google.com/maps/search/?api=1&query=<?= urlencode($workspace['localisation']) ?>" target="_blank" class="map-btn" title="View on Google Maps">
+    🗺️
+  </a>
               </td>
+              <style>.map-btn {
+  padding: 6px 10px;
+  background-color:rgb(30, 11, 238);
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: background-color 0.3s;
+}
+
+.map-btn:hover {
+  background-color: rgb(30, 11, 238);
+}</style>
+
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -593,7 +618,11 @@ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Adds depth */ " data-id="<?= $pla
                 <td class="py-3 px-6"><?= htmlspecialchars($workshop['responsable']) ?></td>
                 <td class="py-3 px-6 text-center">
                   <button class="participate-btn">Participate</button>
+                  <a href="https://www.google.com/maps/search/?api=1&query=<?= urlencode($workshop['lieu_workshop']) ?>" target="_blank" class="map-btn" title="View on Google Maps">
+    🗺️
+  </a>
                 </td>
+               
               </tr>
             <?php endforeach; ?>
           </tbody>

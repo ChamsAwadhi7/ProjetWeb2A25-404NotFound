@@ -11,7 +11,7 @@ if (!isset($_SESSION['utilisateur'])) {
 
 // Vérifiez si l'ID du cours est fourni
 if (!isset($_GET['id']) || empty($_GET['id'])) {
-    die("ID de cours invalide.");
+    die("ID courses not found.");
 }
 
 $cours_id = $_GET['id'];
@@ -102,7 +102,7 @@ $total_contenus = $count['total'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contenus du Cours</title>
+    <title>Courses content </title>
     <link rel="stylesheet" href="CoursContenu.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link
@@ -125,10 +125,10 @@ $total_contenus = $count['total'];
       <div class="sidebar">
         <a href="index.html"><span class="material-symbols-sharp">grid_view</span><h3>Dashboard</h3></a>
         <a href="#"><span class="material-symbols-sharp">person_outline</span><h3>Clients</h3></a>
-        <a href="Event.html"><span class="material-symbols-sharp">receipt_long</span><h3>Événements</h3></a>
-        <a href="cours.html" class="active"><span class="material-symbols-sharp">receipt_long</span><h3>Cours</h3></a>
+        <a href="Event.html"><span class="material-symbols-sharp">receipt_long</span><h3>Events</h3></a>
+        <a href="cours.html" class="active"><span class="material-symbols-sharp">receipt_long</span><h3>Courses</h3></a>
         <a href="startup.html"><span class="material-symbols-sharp">receipt_long</span><h3>Startup</h3></a>
-        <a href="#" id="incubators-btn"><span class="material-symbols-sharp">business</span><h3>Incubateurs</h3></a>
+        <a href="#" id="incubators-btn"><span class="material-symbols-sharp">business</span><h3>Incubators</h3></a>
         <a href="#"><span class="material-symbols-sharp">logout</span><h3>Déconnexion</h3></a>
         <a href="#"><span class="material-symbols-sharp">settings</span><h3>Paramètres</h3></a>
       </div>
@@ -169,10 +169,10 @@ $total_contenus = $count['total'];
 <table>
     <tr>
         <th>ID</th>
-        <th>Chapitre</th>
+        <th>Chapter</th>
         <th>Type</th>
-        <th>Durée</th>
-        <th>Fichier</th>
+        <th>Duration </th>
+        <th>File</th>
         <th>Actions</th>
     </tr>
     <?php foreach ($contenus as $contenu): ?>
@@ -181,7 +181,7 @@ $total_contenus = $count['total'];
             <td><?= $contenu['nomChapitre'] ?></td>
             <td><?= $contenu['typeContenu'] ?></td>
             <td><?= $contenu['duree'] ?></td>
-            <td><a href="<?= $contenu['fichierPath'] ?>" target="_blank">Voir</a></td>
+            <td><a href="<?= $contenu['fichierPath'] ?>" target="_blank">See more</a></td>
             <td>
                 <a href="?id=<?= $cours_id ?>&edit=<?= $contenu['id'] ?>" class="btn btn-secondary">Modifier</a>
                 <a href="?id=<?= $cours_id ?>&delete=<?= $contenu['id'] ?>" class="btn btn-danger" onclick="return confirm('Supprimer ce contenu ?')">Supprimer</a>
@@ -212,7 +212,7 @@ $total_contenus = $count['total'];
       <form method="GET" class="Derniers Commentaires">
     <div class="Derniers Commentaires">
     <div class="Derniers Commentaires">
-        <h2>🗨️ Derniers Commentaires</h2>
+        <h2>🗨️ Latest Comments</h2>
         <br><br>
         <?php if (!empty($commentaires)): ?>
             <ul>
@@ -225,7 +225,7 @@ $total_contenus = $count['total'];
                 <?php endforeach; ?>
             </ul>
         <?php else: ?>
-            <p>Aucun commentaire pour le moment.</p>
+            <p>No Comments for this moment.</p>
         <?php endif; ?>
     </div>
   </div>

@@ -148,18 +148,18 @@ $cours = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h3>My Informations</h3>
         <a href="profile.php"><i class="fas fa-user"></i> profile</a>
         <a href="financeU.php"><i class="fas fa-chart-line"></i> Finance</a>
-        <a href="#"><i class="fas fa-lightbulb"></i> Startups</a>
-        <a href="eventU.php"><i class="fas fa-calendar-alt"></i> Événements</a>
+        <a href="startupU.php"><i class="fas fa-lightbulb"></i> Startups</a>
+        <a href="eventU.php"><i class="fas fa-calendar-alt"></i> Events</a>
         <a href="#"><i class="fas fa-graduation-cap"></i> Formations</a>
-        <a href="coursU.php"><i class="fas fa-book"></i> Cours</a>
+        <a href="coursU.php"><i class="fas fa-book"></i> Courses</a>
         <a href="notifications.php"><i class="fas fa-bell"></i> Notifications</a>
     </div>
 
 <div class="main">
-    <h2><i class="fas fa-book-open"></i> Mes Cours Achetés</h2>
+    <h2><i class="fas fa-book-open"></i> Bought courses</h2>
 
     <?php if (empty($cours)) : ?>
-        <p>Aucun cours acheté.</p>
+        <p>No courses bought.</p>
     <?php else : ?>
         <div class="grid">
             <?php foreach ($cours as $c) : ?>
@@ -172,7 +172,7 @@ $cours = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div class="info"><i class="fas fa-star"></i> Note : <?= htmlspecialchars($c['Notes']) ?> / 5</div>
                         <div class="info"><i class="fas fa-eye"></i> Vues : <?= htmlspecialchars($c['NbrVu']) ?></div>
                         <div class="info"><i class="fas fa-euro-sign"></i> Prix : <?= htmlspecialchars($c['Prix']) ?> dt</div>
-                        <a class="export-btn" href="coursF_detail.php?id=<?= urlencode($c['id']) ?>">
+                        <a class="export-btn" href="COURS/coursF_detail.php?id=<?= urlencode($c['id']) ?>">
                           <i class="fas fa-eye"></i> Voir
                         </a>
                     
@@ -192,7 +192,7 @@ $cours = $stmt->fetchAll(PDO::FETCH_ASSOC);
             font-weight: bold;
             transition: background 0.3s;
         ">
-            <i class="fas fa-arrow-left"></i> Retour à l'accueil
+            <i class="fas fa-arrow-left"></i> RETURN TO HOME
         </a>
     </div>
     <?php endif; ?>

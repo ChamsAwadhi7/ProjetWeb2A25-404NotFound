@@ -113,7 +113,7 @@ $finance = $stmt->fetch(PDO::FETCH_ASSOC);
         <h3>My Informations</h3>
         <a href="profile.php"><i class="fas fa-user"></i> profile</a>
         <a href="financeU.php"><i class="fas fa-chart-line"></i> Finance</a>
-        <a href="#"><i class="fas fa-lightbulb"></i> Startups</a>
+        <a href="startupU.php"><i class="fas fa-lightbulb"></i> Startups</a>
         <a href="eventU.php"><i class="fas fa-calendar-alt"></i> Événements</a>
         <a href="#"><i class="fas fa-graduation-cap"></i> Formations</a>
         <a href="coursU.php"><i class="fas fa-book"></i> Cours</a>
@@ -127,7 +127,7 @@ $finance = $stmt->fetch(PDO::FETCH_ASSOC);
         <table>
             <tr><td class="label">ID Finance</td><td><?= htmlspecialchars($finance['id_finance']) ?></td></tr>
             <tr><td class="label">Numéro de Carte</td><td><?= htmlspecialchars($finance['num_carte']) ?></td></tr>
-            <tr><td class="label">Balance</td><td><?= htmlspecialchars($finance['balance']) ?> €</td></tr>
+            <tr><td class="label">Balance</td><td><?= htmlspecialchars($finance['balance']) ?> dt</td></tr>
             <tr><td class="label">Pays</td><td><?= htmlspecialchars($finance['pays']) ?></td></tr>
             <tr><td class="label">Banque</td><td><?= htmlspecialchars($finance['nom_bank']) ?></td></tr>
         </table>
@@ -147,6 +147,22 @@ $finance = $stmt->fetch(PDO::FETCH_ASSOC);
         ">
             <i class="fas fa-arrow-left"></i> Retour à l'accueil
         </a>
+        <div style="margin-top: 20px;">
+    <a href="FINANCE/financeF.php" style="
+        display: inline-block;
+        padding: 12px 20px;
+        background-color: #27ae60;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: background 0.3s;
+        margin-right: 10px;
+    ">
+        <i class="fas fa-pen"></i> Gérer mes finances
+    </a>
+</div>
+
     </div>
     </div>
     

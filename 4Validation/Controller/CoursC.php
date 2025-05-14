@@ -31,7 +31,7 @@ class CoursController {
 
         $exportPath = $this->uploadFile($files['courseExport'], "uploads/");
         if (!$exportPath) {
-            $this->message = "❌ Veuillez sélectionner un fichier exporté.";
+            $this->message = "❌ Please select an exported file.";
             return;
         }
 
@@ -39,7 +39,7 @@ class CoursController {
             $stmt = $pdo->prepare("INSERT INTO cours (DateAjout, Titre, Description, Notes, NbrVu, Prix, Exportation, ImgCover)
                                    VALUES (?, ?, ?, 0, 0, ?, ?, ?)");
             $stmt->execute([$date, $titre, $description, $prix, $exportPath, $imgCoverPath]);
-            $this->message = "✅ Cours ajouté avec succès.";
+            $this->message = "✅ Course added successfully.";
         } catch (PDOException $e) {
             $this->message = "❌ Erreur SQL : " . $e->getMessage();
         }
@@ -64,7 +64,7 @@ class CoursController {
             // Valider la transaction
             $pdo->commit();
     
-            $this->message = "✅ Cours et commentaires supprimés avec succès.";
+            $this->message = "✅ Courses and comments successfully deleted.";
         } catch (PDOException $e) {
             // Annuler la transaction en cas d'erreur
             $pdo->rollBack();
@@ -147,7 +147,7 @@ public function updateCours($id, $titre, $prix, $description, $files) {
     if (isset($files['imgCover']) && $files['imgCover']['error'] === 0) {
         $imgCoverPath = $this->uploadFile($files['imgCover'], "uploads/covers/");
         if (!$imgCoverPath) {
-            $this->message = "❌ Échec du téléchargement de l'image de couverture.";
+            $this->message = "❌ Failed to download the cover image.";
             return;
         }
     }
@@ -156,7 +156,7 @@ public function updateCours($id, $titre, $prix, $description, $files) {
     if (isset($files['courseExport']) && $files['courseExport']['error'] === 0) {
         $exportPath = $this->uploadFile($files['courseExport'], "uploads/");
         if (!$exportPath) {
-            $this->message = "❌ Échec du téléchargement du fichier d'exportation.";
+            $this->message = "❌ Failed to download the export file.";
             return;
         }
     }
@@ -190,9 +190,9 @@ public function updateCours($id, $titre, $prix, $description, $files) {
 
         // Exécuter la requête
         $stmt->execute($params);
-        $this->message = "✅ Cours mis à jour avec succès";
+        $this->message = "✅ Course updated successfully";
     } catch (PDOException $e) {
-        $this->message = "❌ Erreur lors de la mise à jour du cours : " . $e->getMessage();
+        $this->message = "❌ Error while updating the course : " . $e->getMessage();
     }
 }
 
@@ -262,7 +262,6 @@ function updateMoyenneNote($id_cours, $pdo) {
     $stmt = $pdo->prepare("UPDATE cours SET Notes = ? WHERE id = ?");
     $stmt->execute([$moyenne, $id_cours]);
 }
-
 
 
 }

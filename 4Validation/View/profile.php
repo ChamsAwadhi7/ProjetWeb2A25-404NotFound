@@ -2,7 +2,7 @@
 require_once '../config.php';
 session_start();
 if (!isset($_SESSION['utilisateur'])) {
-    header('Location: login.php');
+    header('Location: login_register.php');
     exit;
 }
 
@@ -10,7 +10,7 @@ $user = $_SESSION['utilisateur'];
 $stmt = $pdo->prepare("SELECT * FROM utilisateur WHERE id = ?");
 $stmt->execute([$user['id']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-&
+
 if (!$user) {
     echo "Utilisateur introuvable.";
     exit();
@@ -166,7 +166,7 @@ if (!$user) {
             font-weight: bold;
             transition: background 0.3s;
         ">
-            <i class="fas fa-arrow-left"></i> Retour à l'accueil
+            <i class="fas fa-arrow-left"></i> Return to home 
         </a>
     </div>
             

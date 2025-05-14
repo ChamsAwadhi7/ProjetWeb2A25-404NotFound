@@ -146,20 +146,20 @@ $evenements = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 <div class="sidebar">
         <h3>My Informations</h3>
-        <a href="profile.php"><i class="fas fa-user"></i> profile</a>
+        <a href="profile.php"><i class="fas fa-user"></i> Profile</a>
         <a href="financeU.php"><i class="fas fa-chart-line"></i> Finance</a>
-        <a href="#"><i class="fas fa-lightbulb"></i> Startups</a>
-        <a href="eventU.php"><i class="fas fa-calendar-alt"></i> Événements</a>
+        <a href="startupU.php"><i class="fas fa-lightbulb"></i> Startups</a>
+        <a href="eventU.php"><i class="fas fa-calendar-alt"></i> Events</a>
         <a href="#"><i class="fas fa-graduation-cap"></i> Formations</a>
-        <a href="coursU.php"><i class="fas fa-book"></i> Cours</a>
+        <a href="coursU.php"><i class="fas fa-book"></i> Courses</a>
         <a href="notifications.php"><i class="fas fa-bell"></i> Notifications</a>
     </div>
 <div class="main">
-<h1><i class="fas fa-calendar-alt"></i> Mes Événements</h1>
+<h1><i class="fas fa-calendar-alt"></i> My events</h1>
 
 <div class="grid">
     <?php if (empty($evenements)): ?>
-        <p style="grid-column: 1 / -1; text-align: center;">Aucun événement trouvé.</p>
+        <p style="grid-column: 1 / -1; text-align: center;">No events found</p>
     <?php else: ?>
         <?php foreach ($evenements as $event): ?>
             <div class="card">
@@ -182,7 +182,7 @@ $evenements = $stmt->fetchAll(PDO::FETCH_ASSOC);
             font-weight: bold;
             transition: background 0.3s;
         ">
-            <i class="fas fa-arrow-left"></i> Retour à l'accueil
+            <i class="fas fa-arrow-left"></i> Return to home
         </a>
     </div>
         <?php endforeach; ?>

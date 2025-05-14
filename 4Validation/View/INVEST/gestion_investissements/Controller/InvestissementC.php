@@ -1,5 +1,5 @@
 <?php
-require 'C:/xampp/htdocs/gestion_investissements/auth/config.php';
+require '/config.php';
 
 
 
