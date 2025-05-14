@@ -60,3 +60,5 @@ cd projet
 Ce projet est sous la licence **XXX**. Pour plus de détails, consultez le fichier [LICENSE] (./LICENSE).
 ### Détails sur la licence MIT
 La licence XXX est une licence de logiciel ...
+### Détails sur l'hebérgement de site
+Notre site est hébéregé (d'apres Render.com) pour qu'il soit bien fonctionné and accessible à tous
